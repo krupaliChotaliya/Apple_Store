@@ -1,0 +1,65 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+.align-items-start {
+    align-items: flex-start!important;
+}
+.d-flex {
+    display: flex!important;
+}
+.py-4 {
+    padding-top: 1.5rem!important;
+    padding-bottom: 1.5rem!important;
+    padding-left: 1.5rem!important;
+    padding-right: 1.5rem!important;
+   
+}
+.card-body {
+    flex: 1 1 auto;
+    padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
+    color: var(--bs-card-color);
+}
+.card {
+    margin-top: 24px;
+    box-shadow: 0 0 0.875rem #2930420d;
+      margin-left: 0.5rem!important;
+      margin-right: 0.5rem!important;
+}
+.flex-fill {
+    flex: 1 1 auto!important;
+}
+.stat svg {
+    width: 24px;
+    height: 24px;
+    color: #3f80ea!important;
+}
+.stat {
+    background: #e0eafc;
+    border-radius: 50%;
+    padding: 0.75rem;
+    width: 48px;
+    height: 48px;
+}
+
+.ms-3 {
+    margin-left: 1rem!important;
+}
+
+.d-inline-block {
+    display: inline-block!important;
+}
+
+.flex-grow-1 {
+    flex-grow: 1!important;
+}
+
+/*@media (min-width: 1200px)
+.col-xl {
+    flex: 1 0 0%;
+}
+
+@media (min-width: 768px)
+.col-md-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}*/
