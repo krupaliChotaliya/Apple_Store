@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.ecommerce.entities;
 
 import javax.persistence.Column;
@@ -19,7 +16,7 @@ public class Product {
     private int pId;
     @Column(length = 200)
     private String pName;
-    @Column(length = 3000)
+    @Column(length = 5000)
     private String pDescription;
     @Column(length = 1500)
     private String pPic;

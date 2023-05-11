@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.ecommerce.Dao;
 
 import com.ecommerce.entities.Category;
+import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,6 +14,10 @@ public class CategoryDao {
 
     public CategoryDao(SessionFactory factory) {
         this.factory = factory;
+    }
+
+    public CategoryDao() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     //to add category to database
@@ -40,6 +42,58 @@ public class CategoryDao {
         }
 
         return id;
+    }
+
+    //get categories from database
+    public List<Category> getcategories() {
+
+        List<Category> list = null;
+        Session session = null;
+        Transaction tx;
+
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Category");
+            list = q.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[getcategory]Exception occurs while fetching categories from databse " + e);
+
+        } finally {
+            session.close();
+        }
+
+        return list;
+
+    }
+
+    //get category by catId
+    public Category getCategoryById(int categoryId) {
+        Category category = null;
+        Session session = null;
+
+        try {
+
+            session = this.factory.openSession();
+            category = (Category) session.get(Category.class, categoryId);
+          
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally {
+
+            session.close();
+
+        }
+
+        return category;
+
     }
 
 }

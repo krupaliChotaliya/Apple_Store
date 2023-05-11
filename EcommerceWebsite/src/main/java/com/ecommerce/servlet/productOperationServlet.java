@@ -1,21 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.ecommerce.servlet;
 
 import com.ecommerce.Dao.CategoryDao;
+import com.ecommerce.Dao.ProductDao;
 import com.ecommerce.entities.Category;
+import com.ecommerce.entities.Product;
 import com.ecommerce.helper.factoryProvider;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+//to store img,audio,video types data above annotation is used.
+@MultipartConfig
 @WebServlet(name = "productOperationServlet", urlPatterns = {"/productOperationServlet"})
 public class productOperationServlet extends HttpServlet {
 
@@ -24,7 +26,8 @@ public class productOperationServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            String val = request.getParameter("addcategory");
+            String val = request.getParameter("operation");
+            //to add category into databse
             if (val.trim().equals("addcategory")) {
 
                 String title = request.getParameter("title");
@@ -33,8 +36,8 @@ public class productOperationServlet extends HttpServlet {
                 Category category = new Category();
                 category.setCategoryTitle(title);
                 category.setCategoryDescription(description);
-                
-//                sending data to categoryDao
+
+                //sending data to categoryDao
                 CategoryDao categoryDao = new CategoryDao(factoryProvider.getfactory());
                 int id = (int) categoryDao.addCategory(category);
 
@@ -43,9 +46,43 @@ public class productOperationServlet extends HttpServlet {
                 response.sendRedirect("admin.jsp");
                 return;
 
-            } else {
+            } else if (val.trim().equals("addproduct")) {
 
-                
+                //add product to database
+                String pname = request.getParameter("pname");
+                String pdescription = request.getParameter("pdescription");
+                int catId = Integer.parseInt(request.getParameter("catId"));
+                int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
+                int pPrice = Integer.parseInt(request.getParameter("pPrice"));
+                int pDiscount = Integer.parseInt(request.getParameter("pDiscount"));
+                Part part = request.getPart("pPic");
+
+                //get category from category-table by using catId
+                CategoryDao catdao = new CategoryDao(factoryProvider.getfactory());
+                Category category = catdao.getCategoryById(catId);
+
+                Product p = new Product();
+
+                p.setpName(pname);
+                p.setpDescription(pdescription);
+                p.setCategory(category);
+                p.setpQuantity(pQuantity);
+                p.setpPrice(pPrice);
+                p.setpDiscount(pDiscount);
+                p.setpPic(part.getSubmittedFileName());
+
+                //sending data to productDao
+                ProductDao pdao = new ProductDao(factoryProvider.getfactory());
+                boolean flag = pdao.addProduct(p);
+
+                if (flag) {
+
+                    HttpSession httpsession = request.getSession();
+                    httpsession.setAttribute("message", "Product added Sucessfully!!");
+                    response.sendRedirect("admin.jsp");
+
+                }
+
             }
 
         }
