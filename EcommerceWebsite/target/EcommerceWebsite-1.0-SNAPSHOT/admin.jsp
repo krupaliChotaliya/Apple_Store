@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="com.ecommerce.entities.Category"%>
+<%@page import="com.ecommerce.Dao.CategoryDao"%>
+<%@page import="com.ecommerce.helper.factoryProvider"%>
 <%@page import="com.ecommerce.entities.User"%>
 <%@page import="org.hibernate.Session"%>
 <%
@@ -103,8 +107,8 @@
                 </div>
             </div>
         </div>
-        <!--start catgory model-->
-        <!-- Modal -->
+        <!--start category model-->
+
         <div class="modal fade" id="add-category-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -117,7 +121,7 @@
                     <div class="modal-body">
 
                         <form action="productOperationServlet" method="post">
-                            <input type="hidden" name="addcategory" value="addcategory">
+                            <input type="hidden" name="operation" value="addcategory">
 
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
@@ -153,8 +157,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="productOperationServlet" method="post">
-                            <input type="hidden" name="addcategory" value="addcategory">
+                        <form action="productOperationServlet" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="operation" value="addproduct">
 
                             <div class="mb-3">
                                 <label for="pname" class="form-label">Name</label>
@@ -166,13 +170,21 @@
                                 <label for="floatingTextarea2">Description</label>
                                 <textarea class="form-control" name="pdescription"  id="floatingTextarea2" style="height: 100px"></textarea>                                  
                             </div>
+                            <%                                CategoryDao cdao = new CategoryDao(factoryProvider.getfactory());
+                                List<Category> list = cdao.getcategories();
+
+                            %>
 
                             <div class="mb-3">
                                 <label for="pCategory" class="form-label">Category</label>
                                 <select name="catId" class="form-control">
-                                    <option value="ipad">ipad</option>
-                                    <option value="mobile">iphone</option>
-                                    <option value="macbook">macbook</option>                                  
+                                    <%                                        for (Category c : list) {
+                                    %>
+
+                                    <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
+                                    <%
+                                        }
+                                    %>
                                 </select>
                             </div>
                             <div class="mb-3">
