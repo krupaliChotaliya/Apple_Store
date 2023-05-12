@@ -5,6 +5,9 @@ import com.ecommerce.Dao.ProductDao;
 import com.ecommerce.entities.Category;
 import com.ecommerce.entities.Product;
 import com.ecommerce.helper.factoryProvider;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -73,9 +76,13 @@ public class productOperationServlet extends HttpServlet {
 
                 //sending data to productDao
                 ProductDao pdao = new ProductDao(factoryProvider.getfactory());
-                boolean flag = pdao.addProduct(p);
+                boolean productResult = pdao.addProduct(p);
 
-                if (flag) {
+                //to upload product-picture into product folder
+                String path = request.getRealPath("img") + File.separator + "products" + File.separator + part.getSubmittedFileName();
+                boolean imgResult = uploadingImg(path, part);
+
+                if (imgResult && productResult) {
 
                     HttpSession httpsession = request.getSession();
                     httpsession.setAttribute("message", "Product added Sucessfully!!");
@@ -86,6 +93,32 @@ public class productOperationServlet extends HttpServlet {
             }
 
         }
+    }
+
+    //uploading product-pic to product folder
+    public boolean uploadingImg(String path, Part part) throws IOException {
+        FileOutputStream fout = null;
+        FileInputStream fis = null;
+        boolean flag = false;
+
+        try {
+
+            fout = new FileOutputStream(path);
+            fis = (FileInputStream) part.getInputStream();
+            byte[] data = new byte[fis.available()];
+            fis.read(data);
+            fout.write(data);
+            flag = true;
+
+        } catch (Exception e) {
+
+            System.out.println("[uploadingImg]Exception occurs while uploading product-picture to product folder" + e);
+        } finally {
+
+            fout.close();
+            fis.close();
+        }
+        return flag;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
