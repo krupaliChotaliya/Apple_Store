@@ -6,7 +6,7 @@
 	 version="3.1">
 
     <welcome-file-list>
-        <welcome-file>home.jsp</welcome-file>
+        <welcome-file>./jsp/home.jsp</welcome-file>
     </welcome-file-list>
     <session-config>
         <session-timeout>

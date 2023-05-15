@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -27,6 +28,7 @@ public class Product {
     @Column(length = 100)
     private int pQuantity;
     @ManyToOne
+    @JoinColumn(name="category_categoryId",nullable=false)
     private Category category;
 
     public Product(int pId, String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity) {

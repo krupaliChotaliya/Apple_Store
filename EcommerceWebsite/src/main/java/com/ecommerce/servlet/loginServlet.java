@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
+
 package com.ecommerce.servlet;
 
 import com.ecommerce.Dao.userDao;
@@ -33,6 +30,8 @@ public class loginServlet extends HttpServlet {
                 //sending data to userDao.
                 userDao userdao = new userDao(factoryProvider.getfactory());
                 User user = userdao.getUserByEmailAndPassword(email, password);
+                
+                System.out.println(user+"++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                
                 if (user == null) {
                     out.println("invaild");

@@ -1,5 +1,4 @@
 package com.ecommerce.servlet;
-
 import com.ecommerce.Dao.CategoryDao;
 import com.ecommerce.Dao.ProductDao;
 import com.ecommerce.entities.Category;
@@ -46,7 +45,7 @@ public class productOperationServlet extends HttpServlet {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("message", "Category added Sucessfully!!");
-                response.sendRedirect("admin.jsp");
+                response.sendRedirect("./jsp/admin.jsp");
                 return;
 
             } else if (val.trim().equals("addproduct")) {
@@ -86,7 +85,7 @@ public class productOperationServlet extends HttpServlet {
 
                     HttpSession httpsession = request.getSession();
                     httpsession.setAttribute("message", "Product added Sucessfully!!");
-                    response.sendRedirect("admin.jsp");
+                    response.sendRedirect("./jsp/admin.jsp");
 
                 }
 
