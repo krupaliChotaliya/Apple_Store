@@ -65,7 +65,7 @@ public class ProductDao {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("[getProducts]Exception occurs while fetching products from database");
+            System.out.println("[getProducts]Exception occurs while fetching products from database"+e);
 
         } finally {
 
@@ -74,6 +74,37 @@ public class ProductDao {
 
         return product;
 
+    }
+
+    //get products by using given id
+    public List<Product> getProductsById(int cid) {
+        Session session = null;
+        Transaction tx = null;
+        List<Product> list = null;
+
+        try {
+
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Product as p where p.category.categoryId =:id");
+            q.setParameter("id", cid);
+         
+            list = q.list();
+           
+            tx.commit();
+        } catch (Exception e) {
+
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[getProductsById]Exception occurs while fetching products from database by using given id"+e);
+
+        } finally {
+
+            session.close();
+        }
+
+        return list;
     }
 
 }
