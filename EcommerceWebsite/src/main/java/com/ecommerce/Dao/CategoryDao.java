@@ -81,7 +81,6 @@ public class CategoryDao {
 
             session = this.factory.openSession();
             category = (Category) session.get(Category.class, categoryId);
-          
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,4 +95,29 @@ public class CategoryDao {
 
     }
 
+    //get category by category-name
+    public Category getCategoryByCategoryName(String name) {
+        Session session = null;
+        Category c = null;
+        Transaction tx;
+        int id = 0;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Category where categoryTitle=:name");
+            q.setParameter("name", name);
+            c = (Category) q.uniqueResult();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[getCategoryByCategoryName]Exception occurs while fetching category by using category name from databse  " + e);
+
+        } finally {
+            session.close();
+        }
+        return c;
+    }
 }
