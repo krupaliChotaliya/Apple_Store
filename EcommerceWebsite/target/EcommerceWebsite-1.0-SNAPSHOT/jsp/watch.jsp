@@ -1,3 +1,4 @@
+<%@page errorPage="error.jsp" %>
 <%@page import="com.ecommerce.entities.Product"%>
 <%@page import="com.ecommerce.Dao.ProductDao"%>
 <%@page import="java.util.List"%>

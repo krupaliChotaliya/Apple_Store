@@ -8,6 +8,12 @@
     <welcome-file-list>
         <welcome-file>./jsp/home.jsp</welcome-file>
     </welcome-file-list>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/error.jsp</location>
+    </error-page>
+    
     <session-config>
         <session-timeout>
             30
