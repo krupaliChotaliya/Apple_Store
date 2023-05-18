@@ -25,7 +25,10 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/jsp/watch.jsp">Watch</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">AirPods</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/jsp/AirPods.jsp">AirPods</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/jsp/desktop.jsp">Desktop</a>
                 </li>
             </ul>
 

@@ -27,10 +27,40 @@
         <%@include file="../components/common_css_js.jsp" %>
     </head>
     <body>
-        <%@include file="../components/navbar.jsp" %>
+
         <%@include file="../components/message.jsp" %>
         <!--users-->
-        <div class="row">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Admin Panel</span>
+            </div>
+                <ul class="navbar-nav ml-auto">
+                <%
+                    User user1 = (User) session.getAttribute("current-user");
+                    if (user1 == null) { %>
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/jsp/login.jsp">Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/jsp/signup.jsp">Register<span class="sr-only">(current)</span></a>
+                </li>
+                <%
+
+                } else {
+
+                %>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#!"><%= user1.getUserName()%> <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="${pageContext.request.contextPath}/jsp/logout.jsp">logout<span class="sr-only">(current)</span></a>
+                </li>
+                <%
+                    }
+                %>
+            </ul>
+        </nav>
+        <div class="row m-4">
             <div class="d-flex col-xl col-md-6">
                 <div class="flex-fill card">
                     <div class=" py-4 card-body">

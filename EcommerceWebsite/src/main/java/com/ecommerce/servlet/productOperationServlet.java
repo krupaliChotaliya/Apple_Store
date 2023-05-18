@@ -45,7 +45,7 @@ public class productOperationServlet extends HttpServlet {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("message", "Category added Sucessfully!!");
-                response.sendRedirect("./jsp/admin.jsp");
+               response.sendRedirect("./jsp/admin.jsp");
                 return;
 
             } else if (val.trim().equals("addproduct")) {

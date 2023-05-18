@@ -124,6 +124,10 @@ public class Product {
         return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", pPic=" + pPic + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + '}';
     }
     
-    
+    //get product price after discount
+    public int getProductPriceAfterDiscount(){
+       int discount=(int) ((this.getpDiscount()/100.0)*this.getpPrice());
+       return this.getpPrice()-discount;
+    }
 
 }
