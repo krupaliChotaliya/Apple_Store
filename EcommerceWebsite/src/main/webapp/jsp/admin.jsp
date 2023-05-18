@@ -4,6 +4,7 @@
 <%@page import="com.ecommerce.helper.factoryProvider"%>
 <%@page import="com.ecommerce.entities.User"%>
 <%@page import="org.hibernate.Session"%>
+<%@page errorPage="error.jsp" %>
 <%
     User user = (User) session.getAttribute("current-user");
     if (user == null) {

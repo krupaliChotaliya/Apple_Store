@@ -1,5 +1,7 @@
 <%@page import="com.ecommerce.entities.User"%>
 <%@page isELIgnored="false"%>
+<%@include file="./common_cart_modal.jsp" %>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="${pageContext.request.contextPath}">apple</a>
@@ -32,7 +34,12 @@
                 </li>
             </ul>
 
+                
             <ul class="navbar-nav ml-auto">
+                 <li class="nav-item active">
+                     <a class="nav-link" href="#!" data-toggle="modal" data-target="#cart"><i class="fa-solid fa-cart-shopping fa-xl"></i><span style="font-size: 18px" class="cart-items">(0)</span></a>
+                </li>
+                
                 <%
                     User user1 = (User) session.getAttribute("current-user");
                     if (user1 == null) { %>

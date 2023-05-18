@@ -1,3 +1,4 @@
+<%@page errorPage="error.jsp" %>
 <!doctype html>
 <html>
 <head>
