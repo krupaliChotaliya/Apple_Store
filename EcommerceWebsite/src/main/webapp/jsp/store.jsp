@@ -17,8 +17,7 @@
         <%@include file="../components/navbar.jsp" %>
         <div class="row m-4">
 
-            <%                
-                ProductDao productdao = new ProductDao(factoryProvider.getfactory());
+            <%                ProductDao productdao = new ProductDao(factoryProvider.getfactory());
                 List<Product> plist = productdao.getProducts();
 
                 for (Product p : plist) {
@@ -36,7 +35,8 @@
                         <span style="color:gray ">&#8377;<%= p.getpPrice()%> &nbsp; <%=  p.getpDiscount()%>% off  </span>
                     </div>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-success" onclick="addToCart(<%= p.getpId() %>,<%= p.getpQuantity() %>, '<%= p.getpName() %>',<%= p.getProductPriceAfterDiscount()%> )">Add to Bag</a>
+                        <a href="#" class="btn btn-primary m-2" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>, '<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</a>         
+                        <a href="#" class="btn btn-success">Buy Now</a>
                     </div>    
                 </div>
 
