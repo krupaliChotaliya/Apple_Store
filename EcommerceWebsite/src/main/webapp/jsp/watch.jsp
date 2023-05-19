@@ -14,7 +14,9 @@
         <%@include file="../components/common_css_js.jsp" %>
     </head>
     <%@include file="../components/navbar.jsp" %>
+ 
     <div class="row m-4">
+        
 
         <%                CategoryDao catdao = new CategoryDao(factoryProvider.getfactory());
             Category c = catdao.getCategoryByCategoryName("watch");
@@ -25,7 +27,7 @@
             for (Product p : plist) {
 
         %>
-
+        
         <div class="col-md-4">
 
             <div class="card " style="width: 17rem;border: none">
@@ -38,7 +40,8 @@
                 </div>
 
                 <div class="card-footer">
-                    <a href="#" class="btn btn-success">Add to Bag</a>
+                   <a href="#" class="btn btn-primary m-2" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>, '<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</a>         
+                        <a href="#" class="btn btn-success">Buy Now</a>
                 </div>    
             </div>
 

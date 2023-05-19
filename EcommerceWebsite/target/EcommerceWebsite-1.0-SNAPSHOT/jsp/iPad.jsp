@@ -38,7 +38,8 @@
                 </div>
 
                 <div class="card-footer">
-                    <a href="#" class="btn btn-success">Add to Bag</a>
+                    <a href="#" class="btn btn-primary m-2" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>, '<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</a>         
+                        <a href="#" class="btn btn-success">Buy Now</a>
                 </div>    
             </div>
 
