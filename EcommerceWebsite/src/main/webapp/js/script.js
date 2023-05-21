@@ -16,41 +16,7 @@ function addToCart(pId, pQuantity, pName, pPrice) {
 //            console.log("add product for first time");
             showtoast("product is added Successfully!!");
 
-        }
-//        else
-//        {
-        //cart in already present
-
-        //return array
-//            let pcart = JSON.parse(cart);
-//
-//
-////            product is already present just increase its quantity
-//            let oldProduct = pcart.find((item) => item.productID === pId);
-//
-//            if (oldProduct)
-//            {
-//                if (oldProduct.productQuantity <= pQuantity - 1)
-//                {
-//                    oldProduct.productQuantity = oldProduct.productQuantity + 1;
-//                    pcart.map((item) => {
-//                        if (item.productID === oldProduct.productID)
-//                            item.productQuantity = oldProduct.productQuantity;
-//                    });
-//
-//                    localStorage.setItem("cart", JSON.stringify(pcart))
-////                console.log("product quantity has been increased!!" + oldProduct.productQuantity);
-//                    showtoast(oldProduct.productName + " quantity has been increased by " + oldProduct.productQuantity);
-//
-//
-//                } else
-//                {
-////                    console.log("product is not available");
-//                    showtoast("We're Sorry !! Product is not available");
-//                }
-
-//            } 
-        else
+        } else
         {
             let pcart = JSON.parse(cart);
             //we have add product
@@ -59,11 +25,8 @@ function addToCart(pId, pQuantity, pName, pPrice) {
             localStorage.setItem("cart", JSON.stringify(pcart));
 //                console.log("product is added!!");
             showtoast(" Product is added Successfully!!");
-
         }
-
         updateCart();
-
     } else
     {
 //        console.log("product is not available");
@@ -75,7 +38,6 @@ function addToCart(pId, pQuantity, pName, pPrice) {
 
 //update cart
 function updateCart() {
-
 
     let cartString = localStorage.getItem("cart");
 
@@ -104,7 +66,6 @@ function updateCart() {
         `;
         let totalPrice = 0;
         cart.map((item) => {
-
             table += `
                 <tr>
                     <td>${item.productName}</td>
@@ -117,18 +78,12 @@ function updateCart() {
                         </div>
                     </td>
                     <td>${item.productPrice * item.productQuantity}</td>
-                    <td><button class="btn btn-danger"  onclick="deleteItemFromCart('${item.productID}')">remove</button></td>
+                    <td><button class="btn btn-danger"  onclick="deleteItemFromCart(${item.productID})">remove</button></td>
                     <td><button type="button" class="btn btn btn-light">edit</button></td>
                 </tr>    
             `
             totalPrice += item.productPrice * item.productQuantity;
-
-
-            if ($("#" + item.productID).length)
-            {
-                console.log("+++++++++++++++" + item.productID);
-            }
-            $("#" + item.productID).addClass("disabled");
+            $("#" + item.productID).prop('disabled', true);
 
         })
 
@@ -143,7 +98,7 @@ function updateCart() {
 
 $(document).ready(function () {
     updateCart();
-})
+});
 
 // toast
 function showtoast(content) {
@@ -158,21 +113,30 @@ function showtoast(content) {
 //to remove product from cart
 function deleteItemFromCart(pid)
 {
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    let newProduct = cart.filter((item) =>
-        item.productID != pid 
-                
-    );
-   
-   
-    localStorage.setItem("cart", JSON.stringify(newProduct));
-    
-    updateCart();
-    showtoast("Product is Deleted.");
-//    location.reload();
+    swal({
+        title: "Are you sure?",
+        text: "Do you really want to delete a product?",
+        icon: "warning",
+        buttons: ["Cancel", "Yes"],
+        dangerMode: true,
+    })
+            .then((willDelete) => {
+                if (willDelete) {
+                     let cart = JSON.parse(localStorage.getItem('cart'));
+                     let newProduct = cart.filter((item) =>
+                        item.productID != pid
+                    );
+                    localStorage.setItem("cart", JSON.stringify(newProduct));
 
+                    updateCart();
+                    location.reload();
+                } 
+            });
 }
 
+function test() {
+
+}
 function redirectToCheckoutPage() {
     window.location = "checkout.jsp";
 }
