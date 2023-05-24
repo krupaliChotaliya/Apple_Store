@@ -73,7 +73,7 @@ function updateCart() {
                     <td>                    
                         <div class="container">
                             <button type="button" onclick="decrementValue(${item.productID})" value="" />-</button>
-                            <input type="text" name="quantity"  id="${item.productID}" maxlength="2" size="1" value="${item.productQuantity}"/>
+                            <input type="text" name="quantity"   id="${item.productID}" maxlength="2" size="1" value="${item.productQuantity}"/>
                             <button type="button" onclick="incrementValue(${item.productID})" value="" />+</button>
                         </div>
                     </td>
@@ -134,16 +134,8 @@ function deleteItemFromCart(pid)
             });
 }
 
-function test() {
 
-}
-function redirectToCheckoutPage() {
-    window.location = "checkout.jsp";
-}
-
-
-// quantity increase , decrease button
-
+// quantity increase button
 function incrementValue(pid)
 {
     var value = parseInt(document.getElementById(pid).value, 10);
@@ -183,6 +175,7 @@ function incrementValue(pid)
     updateCart();
 
 }
+// quantity decrese button
 function decrementValue(pid)
 {
 

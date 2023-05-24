@@ -42,7 +42,6 @@
 
                 </div>
                 <div class="col-lg-5">
-
                     <div class="card bg-dark text-white rounded-3 mb-5">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-4">
