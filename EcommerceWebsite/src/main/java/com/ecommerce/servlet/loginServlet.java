@@ -31,7 +31,7 @@ public class loginServlet extends HttpServlet {
                 userDao userdao = new userDao(factoryProvider.getfactory());
                 User user = userdao.getUserByEmailAndPassword(email, password);
                 
-                System.out.println(user+"++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//                System.out.println(user+"++++++++++++++++++++++++++++++++++++++++++++++++++++++");
                
                 if (user == null) {
                     out.println("invaild");

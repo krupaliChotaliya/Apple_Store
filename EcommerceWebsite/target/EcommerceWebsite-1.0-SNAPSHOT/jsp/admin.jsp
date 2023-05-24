@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="com.ecommerce.helper.helper"%>
 <%@page import="java.util.List"%>
 <%@page import="com.ecommerce.entities.Category"%>
 <%@page import="com.ecommerce.Dao.CategoryDao"%>
@@ -19,6 +21,10 @@
         }
     }
 %>
+<%
+     Map<String,Long> map=helper.getcounts(factoryProvider.getfactory());
+%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -67,7 +73,7 @@
                     <div class=" py-4 card-body">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2">$ 24.300</h3>
+                                <h3 class="mb-2"><%= map.get("userCount") %></h3>
                                 <h3 class="mb-2 font-weight-bold">Users</h3>
                                 <div class="mb-0">
                                     <span class="text-muted">Current</span>
@@ -92,7 +98,7 @@
                     <div class=" py-4 card-body">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2">$ 24.300</h3>
+                                <h3 class="mb-2"><%= map.get("categoryCount") %></h3>
                                 <h3 class="mb-2 font-weight-bold">Category</h3>
                                 <div class="mb-0">
                                     <span class="text-muted">Available</span>
@@ -118,7 +124,7 @@
                     <div class=" py-4 card-body">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2">$ 24.300</h3>
+                                <h3 class="mb-2"><%= map.get("productCount") %></h3>
                                 <h3 class="mb-2 font-weight-bold">Product</h3>
                                 <div class="mb-0">
                                     <span class="text-muted">Available</span>
@@ -201,7 +207,8 @@
                                 <label for="floatingTextarea2">Description</label>
                                 <textarea class="form-control" name="pdescription"  id="floatingTextarea2" style="height: 100px"></textarea>                                  
                             </div>
-                            <%                                CategoryDao cdao = new CategoryDao(factoryProvider.getfactory());
+                            <%                                
+                                CategoryDao cdao = new CategoryDao(factoryProvider.getfactory());
                                 List<Category> list = cdao.getcategories();
 
                             %>
@@ -209,7 +216,8 @@
                             <div class="mb-3">
                                 <label for="pCategory" class="form-label">Category</label>
                                 <select name="catId" class="form-control">
-                                    <%                                        for (Category c : list) {
+                                    <%                                        
+                                        for (Category c : list) {
                                     %>
 
                                     <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>

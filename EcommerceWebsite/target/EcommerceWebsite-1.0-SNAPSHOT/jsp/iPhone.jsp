@@ -27,26 +27,23 @@
 
         %>
 
-        <div class="col-md-4">
-
-            <div class="card " style="width: 17rem;border: none">
-                <img class="card-img-top" src="../img/products/<%=p.getpPic()%>" alt="Card image cap" >
-                <div class="card-body py-4">
-                    <h5 class="card-title"><%= p.getpName()%></h5>
-                    <p class="card-text"> <%= p.getpDescription()%></p>
-                      <h4 class="card-title" style="color: #51087E">&#8377; <%= p.getProductPriceAfterDiscount()%>.00</h4>
-                      <span style="color:gray ">&#8377;<%= p.getpPrice()%> &nbsp; <%=  p.getpDiscount()%>% off  </span>
+          <div class="col-md-4">
+                <div class="card " style="width: 22rem;">
+                    <img class="card-img-top" src="../img/products/<%=p.getpPic()%>" alt="Card image cap">
+                    <div class="card-body py-4">
+                        <h5 class="card-title"><%= p.getpName()%></h5>
+                        <p class="card-text"> <%= p.getpDescription()%></p>
+                        <h4 class="card-title" style="color: #51087E">&#8377; <%= p.getProductPriceAfterDiscount()%>.00</h4>
+                        <span style="color:gray ">&#8377;<%= p.getpPrice()%> &nbsp; <%=  p.getpDiscount()%>% off  </span>
                     </div>
+                    <div class="card-footer">
+                     <button href="#" class="btn btn-primary m-2" id="<%= p.getpId()%>" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>,'<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</button>         
+                        <a href="#" class="btn btn-success m-2">Buy Now</a>
+                    </div>    
+                </div>
 
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary m-2" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>, '<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</a>         
-                        <a href="#" class="btn btn-success">Buy Now</a>
-                </div>    
             </div>
-
+            <% }%>
         </div>
-        <% }%>
-    </div>
-
-</body>
+    </body>
 </html>
