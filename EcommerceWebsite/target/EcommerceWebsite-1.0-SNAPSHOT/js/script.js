@@ -32,7 +32,6 @@ function addToCart(pId, pQuantity, pName, pPrice) {
 //        console.log("product is not available");
         showtoast("We're Sorry !! Product is not available");
     }
-
 }
 ;
 
@@ -73,7 +72,7 @@ function updateCart() {
                     <td>                    
                         <div class="container">
                             <button type="button" onclick="decrementValue(${item.productID})" value="" />-</button>
-                            <input type="text" name="quantity"   id="${item.productID}" maxlength="2" size="1" value="${item.productQuantity}"/>
+                            <input type="text" name="quantity" id="${item.productID}" maxlength="2" size="1" value="${item.productQuantity}"/>
                             <button type="button" onclick="incrementValue(${item.productID})" value="" />+</button>
                         </div>
                     </td>
@@ -151,10 +150,12 @@ function incrementValue(pid)
         let pcart = JSON.parse(localStorage.getItem('cart'));
         if (pcart != null && pcart.length > 0)
         {
-            console.log(qty);
+            
             let oldProduct = pcart.find((item) => item.productID === pid);
+           
             if (oldProduct)
             {
+                 console.log(qty);
                 if (qty > 1 && qty <= 10)
                 {
                     oldProduct.productQuantity = parseInt(qty);

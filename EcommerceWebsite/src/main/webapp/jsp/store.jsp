@@ -36,7 +36,7 @@
                         <span style="color:gray ">&#8377;<%= p.getpPrice()%> &nbsp; <%=  p.getpDiscount()%>% off  </span>
                     </div>
                     <div class="card-footer">
-                     <button href="#" class="btn btn-primary m-2" id="<%= p.getpId()%>" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>,'<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</button>         
+                        <button href="#" class="btn btn-primary m-2" id="<%= p.getpId()%>" onclick="addToCart(<%= p.getpId()%>,<%= p.getpQuantity()%>,'<%= p.getpName()%>',<%= p.getProductPriceAfterDiscount()%>)">Add to Bag</button>         
                         <a href="#" class="btn btn-success m-2">Buy Now</a>
                     </div>    
                 </div>
