@@ -1,4 +1,3 @@
-
 package com.ecommerce.entities;
 
 import javax.persistence.Column;
@@ -13,6 +12,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
+
     private int userId;
     @Column(length = 100)
     private String userName;
@@ -25,10 +25,10 @@ public class User {
     @Column(length = 1500)
     private String userPic;
     @Column(length = 1500)
-    private String userAddress;  
+    private String userAddress;
     private String userType;
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress,String userType) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -36,20 +36,20 @@ public class User {
         this.userPhone = userPhone;
         this.userPic = userPic;
         this.userAddress = userAddress;
-        this.userType=userType;
+        this.userType = userType;
     }
 
     public User() {
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress,String userType) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
         this.userPic = userPic;
         this.userAddress = userAddress;
-        this.userType=userType;
+        this.userType = userType;
     }
 
     public int getUserId() {
@@ -120,7 +120,5 @@ public class User {
     public String toString() {
         return "User{" + "userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userPic=" + userPic + ", userAddress=" + userAddress + ", userType=" + userType + '}';
     }
-
-   
 
 }
