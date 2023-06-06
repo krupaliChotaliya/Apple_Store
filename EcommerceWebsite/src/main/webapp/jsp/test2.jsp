@@ -1,3 +1,4 @@
+<%@page import="com.ecommerce.Dao.ProductDao"%>
 <%
     User user = (User) session.getAttribute("current-user");
     if (user == null) {
@@ -23,17 +24,18 @@
         <form action="../OrderCreation" method="post" id="login-form" >
             <div class="container py-2 mt-4 " >
                 <div class="row rounded-3 " >
-                    <div class="col-lg-11 mt-5">
+                    <div class="col-lg-7 mt-5">
                         <div class="card bg-dark">
-                            <div class="cart-body"> </div>                            
-                        </div>
+                            <div class="cart-body"> </div>
+                             <button type="submit" class="btn btn-success text-white mt-3">Checkout</button>
+                        </div>                       
                     </div>
-                </div>
-                <button type="submit" class="btn btn-success text-white mt-3 ">Checkout</button>
+                </div>               
         </form>
 
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
+                     
             <%                
                 String orderId = (String) session.getAttribute("orderId");
                 if (orderId != null) {

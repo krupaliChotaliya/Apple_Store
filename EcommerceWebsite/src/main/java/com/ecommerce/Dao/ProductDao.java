@@ -109,7 +109,7 @@ public class ProductDao {
 
     //get product by product name
     public Product getProductByname(String name) {
-        
+
         Session session = null;
         Transaction tx;
         Product product = null;
@@ -123,7 +123,6 @@ public class ProductDao {
             product = (Product) q.uniqueResult();
             tx.commit();
 
-            
         } catch (Exception e) {
 
             if (session.getTransaction() != null) {
@@ -140,4 +139,28 @@ public class ProductDao {
 
     }
 
+    //to get quantity by product name
+    public int quantityByProductName(String name) {
+        Session session = null;
+        int quantity = 0;
+        Transaction tx;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("select pQuantity from Product where pName=:p");
+            q.setParameter("p", name);
+            quantity = (int) q.uniqueResult();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+
+            System.out.println("[quantityByProductName]Exception occurs while fetching qunatity by Product name" + e);
+        } finally {
+            session.close();
+        }
+        return quantity;
+    }
 }

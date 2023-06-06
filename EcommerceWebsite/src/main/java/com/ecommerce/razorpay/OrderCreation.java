@@ -47,7 +47,7 @@ public class OrderCreation extends HttpServlet {
             Order order = client.orders.create(obj);
             String orderId = order.get("id").toString();
 
-            System.out.println(orderId);
+           
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("current-user");
 
@@ -109,14 +109,12 @@ public class OrderCreation extends HttpServlet {
     
     //save ordered products to Order_Product table
     public void saveOrderedProducts(String[] quantity,String[] productname,String orderId ){
-    
      
             ProductDao pdao = new ProductDao(factoryProvider.getfactory());
             OrderDao orderdao = new OrderDao(factoryProvider.getfactory());
             Orders order = orderdao.getOrderByOrderId(orderId);
             
             Order_ProductDao opdao = new Order_ProductDao(factoryProvider.getfactory());
-            
             Order_Product orderproduct = new Order_Product();
               
             for (int i = 0; i < productname.length; i++) {

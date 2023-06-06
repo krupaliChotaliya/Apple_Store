@@ -9,8 +9,7 @@ import org.hibernate.Transaction;
 
 public class helper {
 
-   
-     //return number of products, category,users;
+     //return number of products, category,users; used in admin panel to show counts
     public static Map<String, Long> getcounts(SessionFactory factory) {
          Map<String, Long> map = null ;
         Session session = null;
