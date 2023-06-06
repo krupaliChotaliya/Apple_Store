@@ -1,3 +1,5 @@
+<%@page import="com.ecommerce.Dao.ProductDao"%>
+<%@page import="com.ecommerce.helper.factoryProvider"%>
 <html>
     <head>
         <title>Checkout</title>
@@ -6,26 +8,21 @@
     </head>
     <body>
         <%@include file="../components/navbar.jsp" %>
-        <form action="../checkoutServlet" method="post">
-            <div class="container py-2 mt-4 " >
-                <div class="row rounded-3 " >
-                    <div class="col-lg-7 mt-5">
-                        <div class="card bg-dark">
-                            <div class="cart-body">
-                            </div>
-                            <a href="#!" class="text-white text-center " style="text-decoration: none"><i  class="fas fa-long-arrow-alt-left me-2"></i>Bact to shop</a>
-                        </div>    
-                    </div>
-                    <div class="col-lg-5">
+        <%@include file="../components/message.jsp" %>
+
+        <div class="row rounded-3 " >
+            <div class="col-lg-5 mx-5 ">
+                <form action="../deliveryServlet" method="post">
+                    <div class="container py-2 mt-4 " >
                         <h3>Shipping Address</h3>
                         <form class="form-control mt-4">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
-                                <input type="text" class="form-control" value=""  placeholder="Enter name">
+                                <input type="text" class="form-control" name="name"  placeholder="Enter name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Phone no</label>
-                                <input type="number" class="form-control" value="" placeholder="Phone no">
+                                <input type="number" class="form-control" name="phoneno" placeholder="Phone no">
                             </div>
 
                             <div class="form-group">
@@ -71,25 +68,36 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Pincode</label>
-                                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="Pincode">
+                                <input type="number" name="pincode" class="form-control" id="exampleInputPassword1" placeholder="Pincode">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">City</label>
-                                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="City">
+                                <input type="number" name="city" class="form-control" id="exampleInputPassword1" placeholder="City">
                             </div>
                             <div class="form-group">
                                 <label for="landmark">landmark</label>
-                                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="landmark (optional)">
+                                <input type="text" name="landmark" class="form-control" id="exampleInputPassword1" placeholder="landmark (optional)">
                             </div>
                             <div class="form-group">
                                 <label for="Address">Address</label>
-                                <textarea class="form-control"></textarea>
+                                <textarea class="form-control" name="address"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-warning btn-block text-white">Checkout</button>
+                            <button type="submit" class="btn btn-warning btn-block text-bg-warning mt-2">Save</button>
                         </form>
+                    </div>  
+                </form> 
+            </div>      
+        <div class="col-lg-6 mt-5">
+            <form action="../checkoutServlet" method="post">
+                <div class="card bg-dark">
+                    <div class="cart-body">                                
                     </div>
-                </div>
-            </div>
-        </form>    
+                    <button type="submit" class="btn btn-success btn-block text-bg-success mt-2">Checkout</button>
+                </div>                               
+            </form>
+        </div>  
+  </div>
+
+
     </body>
 </html>
