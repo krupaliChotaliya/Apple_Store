@@ -52,6 +52,7 @@ Contributor(s):
         <mapping class="com.ecommerce.entities.Category"></mapping>
         <mapping class="com.ecommerce.entities.Product"></mapping>
         <mapping class="com.ecommerce.entities.Orders"></mapping>
+        <mapping class="com.ecommerce.entities.Order_Product"></mapping>
 
     </session-factory>  
 </hibernate-configuration>

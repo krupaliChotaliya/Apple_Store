@@ -28,8 +28,10 @@ public class Product {
     @Column(length = 100)
     private int pQuantity;
     @ManyToOne
-    @JoinColumn(name="category_categoryId",nullable=false)
+    @JoinColumn(name="category_categoryId",nullable = false)
     private Category category;
+    @Column(name="pOhterPics")
+    private String pOhterPics;
 
     public Product(int pId, String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity) {
         this.pId = pId;
@@ -117,8 +119,16 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
 
+    public String getpOhterPics() {
+        return pOhterPics;
+    }
+
+    public void setpOhterPics(String pOhterPics) {
+        this.pOhterPics = pOhterPics;
+    }
+
+   
     @Override
     public String toString() {
         return "Product{" + "pId=" + pId + ", pName=" + pName + ", pDescription=" + pDescription + ", pPic=" + pPic + ", pPrice=" + pPrice + ", pDiscount=" + pDiscount + ", pQuantity=" + pQuantity + '}';
