@@ -44,7 +44,7 @@ public class pagebody extends TagSupport {
 "                        <h5 class=\"card-title\">"+p.getpName()+"</h5>\n" +
 "                        <p class=\"card-text\"> "+p.getpDescription()+"</p>\n" +
 "                        <h4 class=\"card-title\" style=\"color: #51087E\">&#8377;"+p.getProductPriceAfterDiscount()+".00</h4>\n" +
-"                        <span style=\"color:gray \">&#8377;"+p.getpPrice()+" &nbsp; "+p.getpDiscount()+"% off  </span>\n" +
+"                        <span style=\"color:gray \"><del>&#8377;"+p.getpPrice()+"</del> &nbsp; "+p.getpDiscount()+"% off  </span>\n" +
 "                    </div>\n" +
 "                    <div class=\"card-footer\">\n" +
 "                     <button href=\"#\" class=\"btn btn-primary m-2\" id=\""+p.getpId()+"\" onclick=\"addToCart("+p.getpId()+","+ p.getpQuantity()+",'"+p.getpName()+"',"+p.getProductPriceAfterDiscount()+")\">Add to Bag</button>         \n" +

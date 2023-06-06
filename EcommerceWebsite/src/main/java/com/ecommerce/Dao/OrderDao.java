@@ -41,11 +41,9 @@ public class OrderDao {
 
     }
 
-    //add payment details on server
+    //update payment status in Orders table
     public int updateOrder(String payment_id, String order_id, String status) {
 
-        System.out.println(payment_id+"+++++++++++++++++++++++++++");
-        
         int result = 0;
         Session session = null;
         Transaction tx;
@@ -58,9 +56,7 @@ public class OrderDao {
             q.setParameter("s", status);
             q.setParameter("id", order_id);
             result = q.executeUpdate();
-
-            System.out.println(result+"++++++++");
-            tx.commit();
+              tx.commit();
 
         } catch (Exception e) {
 
@@ -79,4 +75,37 @@ public class OrderDao {
 
     }
 
+    //get order by order_id
+    public Orders getOrderByOrderId(String orderid) {
+
+        Orders order = null;
+        Session session = null;
+        Transaction tx;
+   
+        try {
+
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("from Orders where order_id=:id");
+            q.setParameter("id", orderid);
+            order = (Orders) q.uniqueResult();
+            tx.commit();
+
+        } catch (Exception e) {
+
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[getProductByname]Exception occurs while fetching order using order id from database" + e);
+
+        } finally {
+
+            session.close();
+        }
+
+        return order;
+
+    }
+
+    
 }

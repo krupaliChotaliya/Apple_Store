@@ -22,7 +22,7 @@
     }
 %>
 <%
-     Map<String,Long> map=helper.getcounts(factoryProvider.getfactory());
+    Map<String, Long> map = helper.getcounts(factoryProvider.getfactory());
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,14 +36,14 @@
     <body>
 
         <%@include file="../components/message.jsp" %>
+        <%@include file="../components/common_cart_modal.jsp" %>
         <!--users-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
             <div class="container-fluid">
                 <span class="navbar-brand mb-0 h1">Admin Panel</span>
             </div>
-                <ul class="navbar-nav ml-auto">
-                <%
-                    User user1 = (User) session.getAttribute("current-user");
+            <ul class="navbar-nav ml-auto">
+                <%                    User user1 = (User) session.getAttribute("current-user");
                     if (user1 == null) { %>
                 <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/jsp/login.jsp">Login <span class="sr-only">(current)</span></a>
@@ -73,7 +73,7 @@
                     <div class=" py-4 card-body">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2"><%= map.get("userCount") %></h3>
+                                <h3 class="mb-2"><%= map.get("userCount")%></h3>
                                 <h3 class="mb-2 font-weight-bold">Users</h3>
                                 <div class="mb-0">
                                     <span class="text-muted">Current</span>
@@ -98,7 +98,7 @@
                     <div class=" py-4 card-body">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2"><%= map.get("categoryCount") %></h3>
+                                <h3 class="mb-2"><%= map.get("categoryCount")%></h3>
                                 <h3 class="mb-2 font-weight-bold">Category</h3>
                                 <div class="mb-0">
                                     <span class="text-muted">Available</span>
@@ -124,7 +124,7 @@
                     <div class=" py-4 card-body">
                         <div class="d-flex align-items-start">
                             <div class="flex-grow-1">
-                                <h3 class="mb-2"><%= map.get("productCount") %></h3>
+                                <h3 class="mb-2"><%= map.get("productCount")%></h3>
                                 <h3 class="mb-2 font-weight-bold">Product</h3>
                                 <div class="mb-0">
                                     <span class="text-muted">Available</span>
@@ -194,20 +194,22 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="../productOperationServlet" method="post" enctype="multipart/form-data">
+                        <form action="../productOperationServlet" method="post" id="myForm" enctype="multipart/form-data">
+                            <!--check option-->
                             <input type="hidden" name="operation" value="addproduct">
 
                             <div class="mb-3">
                                 <label for="pname" class="form-label">Name</label>
-                                <input type="text" name="pname" class="form-control" id="exampleInputEmail1" aria-describedby="">
-
+                                <input type="text" name="pname" id="pname" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <span id="pname_error" class="text-danger font-weight-bold"></span>
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <label for="floatingTextarea2">Description</label>
-                                <textarea class="form-control" name="pdescription"  id="floatingTextarea2" style="height: 100px"></textarea>                                  
+                            <div class="mb-3">
+                                <label for="pCategory" class="form-label">Description</label>
+                                <textarea class="form-control" id="pdescription" name="pdescription"  style="height: 100px"></textarea>                                  
+                                <span id="pdescription_error" class="text-danger font-weight-bold"></span>
                             </div>
-                            <%                                
+                            <%
                                 CategoryDao cdao = new CategoryDao(factoryProvider.getfactory());
                                 List<Category> list = cdao.getcategories();
 
@@ -216,8 +218,7 @@
                             <div class="mb-3">
                                 <label for="pCategory" class="form-label">Category</label>
                                 <select name="catId" class="form-control">
-                                    <%                                        
-                                        for (Category c : list) {
+                                    <%                                        for (Category c : list) {
                                     %>
 
                                     <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
@@ -228,22 +229,37 @@
                             </div>
                             <div class="mb-3">
                                 <label for="pQuantity" class="form-label">Quantity</label>
-                                <input type="number" name="pQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <input type="number" name="pQuantity" id="pQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <span id="pQuantity_error" class="text-danger font-weight-bold"></span>  
                             </div>
                             <div class="mb-3">
                                 <label for="pPrice" class="form-label">Price</label>
-                                <input type="number" name="pPrice" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <input type="number" name="pPrice" id="pPrice" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <span id="pPrice_error" class="text-danger font-weight-bold"></span>
                             </div>
                             <div class="mb-3">
                                 <label for="pDiscount" class="form-label">Discount</label>
-                                <input type="number" name="pDiscount" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <input type="number" name="pDiscount" id="pDiscount" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <span id="pDiscount_error" class="text-danger font-weight-bold"></span>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleFormControlFile1">Product Picture</label>
-                                <input type="file" name="pPic" class="form-control-file">
+                                <label for="exampleFormControlFile1">Main Picture of Product</label>
+                                <input type="file" name="pPic" id="mainpic" class="form-control-file" accept="image/*">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="mb-3">
+                                <label for="exampleFormControlFile1">Other Product pictures</label><br>
+                                <input type="file" id="otherpic" name="pOtherPics" multiple accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- error message toast-->
+                            <div class="toast align-items-center position-fixed top-0 end-0 p-3 text-bg-danger m-5 border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body fs-6" id="toast-content">
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                            </div>
                         </form> 
                     </div>
                 </div>
@@ -251,6 +267,114 @@
         </div>
 
         <!--end product modal-->
+
+
+   
+
+        <script>
+
+            function validation() {
+
+                var pname = document.getElementById('pname').value;
+                var pdescription = document.getElementById('pdescription').value;
+                var pQuantity = document.getElementById('pQuantity').value;
+                var pPrice = document.getElementById('pPrice').value;
+                var pDiscount = document.getElementById('pDiscount').value;
+
+                if (pname == "")
+                {
+                    document.getElementById('toast-content').innerHTML = "please enter product name";
+                    $(".toast").toast("show");
+                    return true;
+                }
+
+                if (pdescription == "")
+                {
+                    document.getElementById('toast-content').innerHTML = "please enter product description";
+                    $(".toast").toast("show");
+                    return true;
+                }
+                if (pQuantity == "")
+                {
+                    document.getElementById('toast-content').innerHTML = "please enter product Quantity";
+                    $(".toast").toast("show");
+                    return true;
+                }
+                if (pPrice == "")
+                {
+                    document.getElementById('toast-content').innerHTML = "please enter product price";
+                    $(".toast").toast("show");
+                    return true;
+                }
+                if (pDiscount == "")
+                {
+                    document.getElementById('toast-content').innerHTML = "please enter discount";
+                    $(".toast").toast("show");
+                    return true;
+                }
+                return false;
+            }
+
+            let allpics = true;
+            let mainpic = true;
+            const form = document.getElementById('myForm');
+
+            form.addEventListener('submit', handleFormSubmit);
+
+            function handleFormSubmit(event) {
+
+                if (allpics || mainpic) {
+                    event.preventDefault();
+                }
+
+                if (validation()) {
+
+                    event.preventDefault();
+                }
+
+            }
+
+            const coverpic = document.getElementById('mainpic');
+            coverpic.addEventListener('change', mainPicUpload);
+            function mainPicUpload(event) {
+                mainpic = false;
+                const file = event.target.files[0];
+                if (file) {
+                    const fileType = file.type;
+                    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+                    if (!allowedTypes.includes(fileType)) {
+                        document.getElementById('toast-content').innerHTML = "Invalid file type. Please upload a JPEG, PNG, or JPG file.";
+                        $(".toast").toast("show");
+                        mainpic = true;
+                    }
+                }
+            }
+
+            const otherpic = document.getElementById('otherpic');
+            otherpic.addEventListener('change', otherPicsUpload);
+            function otherPicsUpload(event) {
+                allpics = false;
+                if ($("#otherpic")[0].files.length != 3) {
+                    document.getElementById('toast-content').innerHTML = "Please upload 3  product pics";
+                    $(".toast").toast("show");
+                    allpics = true;
+                } else {
+                    const files = otherpic.files;
+
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const fileType = file.type;
+                        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif']; 
+
+                        if (!allowedTypes.includes(fileType)) {
+                            allpics = true;
+                            document.getElementById('toast-content').innerHTML = "Invalid file type for file ${i + 1}. Please upload a JPEG, PNG, or GIF file.";
+                            $(".toast").toast("show");
+                        }
+                    }
+                }
+            }
+        </script>
 
     </body>
 </html>

@@ -36,10 +36,10 @@ public class Orders {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    
-    
+     
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
+    
 
     public Long getId() {
         return id;

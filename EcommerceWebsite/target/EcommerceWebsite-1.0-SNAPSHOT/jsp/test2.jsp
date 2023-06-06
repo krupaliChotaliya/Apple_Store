@@ -1,3 +1,13 @@
+<%
+    User user = (User) session.getAttribute("current-user");
+    if (user == null) {
+        session.setAttribute("message", "You are not logged in!! login first");
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
+<%@page import="com.ecommerce.entities.User"%>
 <%@page import="com.ecommerce.helper.factoryProvider"%>
 <%@page import="com.ecommerce.Dao.OrderDao"%>
 <!DOCTYPE html>
@@ -8,23 +18,28 @@
     </head>
     <%@include file="../components/common_css_js.jsp" %>
     <body>
-       
+        <%@include file="../components/navbar.jsp" %>
+
         <form action="../OrderCreation" method="post" id="login-form" >
-            <input type="number" placeholder="enter amount" name="amount" required="true"  id="payment_field"/>
-            <button  type="submit">pay</button>
+            <div class="container py-2 mt-4 " >
+                <div class="row rounded-3 " >
+                    <div class="col-lg-11 mt-5">
+                        <div class="card bg-dark">
+                            <div class="cart-body"> </div>                            
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success text-white mt-3 ">Checkout</button>
         </form>
 
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
         <script>
-            <%
+            <%                
                 String orderId = (String) session.getAttribute("orderId");
-
                 if (orderId != null) {
             %>
 
             let amount = $("#payment_field").val();
-
-            console.log(amount);
 
             let option = {
                 key: 'rzp_test_cYbIr5dlXYJiZs',
@@ -64,11 +79,9 @@
                 console.log(response.error.metadata.payment_id);
             });
             rzp.open();
-            
-            
-            function updatePayment(payment_id, order_id, status) {
 
-         ``   console.log("enter>>>>>>>>>>>>>>>>>");
+            function updatePayment(payment_id, order_id, status) {
+                console.log("entered<<<<<<<<<<<<<<<<<<")
                 $.ajax({
                     url: "../OrderProcess",
                     data: JSON.stringify({
@@ -81,19 +94,20 @@
                     datatype: 'json',
                     success: function (response) {
 
-                        if(response=="success"){
-                            
-                             alert("sucess");
+                        console.log("entered sucess");
+                        if (response == "success") {
+
+                            alert("sucess");
                         }
-                       
+
                     },
                     error: function (error) {
-                        
-                            if(error=="failed"){
-                            
+
+                        if (error == "failed") {
+
                             alert("fail");
-                        } 
-                        
+                        }
+
                     }
 
                 })
@@ -103,6 +117,7 @@
         </script>
         <%
             }
+            session.removeAttribute("orderId");
         %>
     </body>
 </html>
