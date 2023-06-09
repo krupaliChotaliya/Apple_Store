@@ -63,7 +63,7 @@ public class OrderCreation extends HttpServlet {
             session.setAttribute("orderId", orderId);
 
             String path = request.getContextPath();
-            response.sendRedirect(path + "/jsp/test2.jsp");
+            response.sendRedirect(path + "/jsp/checkout.jsp");
 
 
         } catch (RazorpayException ex) {
