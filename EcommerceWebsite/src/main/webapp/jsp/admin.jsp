@@ -156,27 +156,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
-                        <form action="../productOperationServlet" method="post">
+                        <form action="#" method="post" id="categoryform">
+                            <!-- to check whether it is product form or category form-->
                             <input type="hidden" name="operation" value="addcategory">
-
                             <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
-                                <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="">
+                                <input type="text" name="title" id="categoryTitle" class="form-control" id="exampleInputEmail1" aria-describedby="">
 
                             </div>
 
-                            <div class="form-floating mb-3">
-                                <label for="floatingTextarea2">Description</label>
-                                <textarea class="form-control" name="description"  id="floatingTextarea2" style="height: 100px"></textarea>                                  
+                            <div class="mb-3">
+                                <label for="">Description</label>
+                                <textarea class="form-control" id="categoryDescription" name="description"  id="" style="height: 100px"></textarea>                                  
                             </div>
 
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                               <!-- error message toast-->
+                            <div class="toast toast2 align-items-center position-fixed top-0 end-0 p-3 text-bg-danger m-5 border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                                <div class="d-flex">
+                                    <div class="toast-body fs-6" id="toast-content2">
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                </div>
+                            </div>
+                            <!--end toast-->
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -194,8 +200,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="../productOperationServlet" method="post" id="myForm" enctype="multipart/form-data">
-                            <!--check option-->
+                        <form action="../productOperationServlet" method="post" id="productform" enctype="multipart/form-data">
+                            <!-- to check whether it is product form or category form-->
                             <input type="hidden" name="operation" value="addproduct">
 
                             <div class="mb-3">
@@ -218,7 +224,8 @@
                             <div class="mb-3">
                                 <label for="pCategory" class="form-label">Category</label>
                                 <select name="catId" class="form-control">
-                                    <%                                        for (Category c : list) {
+                                    <%                                        
+                                        for (Category c : list) {
                                     %>
 
                                     <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
@@ -260,6 +267,7 @@
                                     <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                                 </div>
                             </div>
+                            <!--end toast-->
                         </form> 
                     </div>
                 </div>
@@ -269,10 +277,9 @@
         <!--end product modal-->
 
 
-   
 
         <script>
-
+//            product form validation
             function validation() {
 
                 var pname = document.getElementById('pname').value;
@@ -312,14 +319,15 @@
                     $(".toast").toast("show");
                     return true;
                 }
+
                 return false;
+
             }
 
             let allpics = true;
             let mainpic = true;
-            const form = document.getElementById('myForm');
-
-            form.addEventListener('submit', handleFormSubmit);
+            const productform = document.getElementById('productform');
+            productform.addEventListener('submit', handleFormSubmit);
 
             function handleFormSubmit(event) {
 
@@ -364,7 +372,7 @@
                     for (let i = 0; i < files.length; i++) {
                         const file = files[i];
                         const fileType = file.type;
-                        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif']; 
+                        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
                         if (!allowedTypes.includes(fileType)) {
                             allpics = true;
@@ -374,6 +382,36 @@
                     }
                 }
             }
+
+//            category form validation
+            var categoryTitle = document.getElementById('categoryTitle').value;
+            var categoryDescription = document.getElementById('categoryDescription').value;
+        
+            function validationForCategory() {
+
+                if (categoryTitle == "")
+                {                  
+                    document.getElementById('toast-content2').innerHTML = "please enter category Title";
+                    $(".toast2").toast("show");
+                    return true;
+                }
+                if (categoryDescription == "")
+                {
+                    document.getElementById('toast-content2').innerHTML = "please enter Category Description";
+                    $(".toast2").toast("show");
+                    return true;
+                }
+                return false;
+            }
+                     
+            const categoryform = document.getElementById('categoryform');
+            categoryform.addEventListener('submit', handleCategoryFormSubmit);
+            function handleCategoryFormSubmit(event) {
+               if (validationForCategory()) {
+                    event.preventDefault();
+                }
+            }
+
         </script>
 
     </body>

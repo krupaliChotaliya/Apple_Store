@@ -52,11 +52,20 @@
         </div>
     </form>
 </div>   
+<!-- start toast :: error msg-->
+<div class="toast align-items-center position-fixed top-0 end-0 text-bg-danger mt-5 mr-2 p-2 border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body fs-6" id="toast-content">
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+<!--end toast-->
 <script>
     $(document).ready(function () {
 
+//        signup form validation
         $('#signup-form').on('submit', function (event) {
-            console.log("load");
             var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             var phoneno = /^\d{10}$/;
 
@@ -68,28 +77,33 @@
 
             if (!email.match(mailformat))
             {
-                document.getElementById('email_error').innerHTML = "**invaild email";
+                document.getElementById('toast-content').innerHTML = "please enter valid Email Id";
+                $(".toast").toast("show");
                 return false;
             }
 
             if (password == "")
             {
-                document.getElementById('password_error').innerHTML = "**invaild password";
+                document.getElementById('toast-content').innerHTML = "please enter password";
+                $(".toast").toast("show");
                 return false;
             }
             if (username == "" || !isNaN(username))
             {
-                document.getElementById('username_error').innerHTML = "**invaild username";
+                document.getElementById('toast-content').innerHTML = "please enter username";
+                $(".toast").toast("show");
                 return false;
             }
             if (!phone.match(phoneno))
             {
-                document.getElementById('phone_error').innerHTML = "**invaild phone";
+                document.getElementById('toast-content').innerHTML = "please enter phone no";
+                $(".toast").toast("show");
                 return false;
             }
             if (address == "")
             {
-                document.getElementById('address_error').innerHTML = "**invaild address";
+                document.getElementById('toast-content').innerHTML = "please enter address";
+                $(".toast").toast("show");
                 return false;
             }
 

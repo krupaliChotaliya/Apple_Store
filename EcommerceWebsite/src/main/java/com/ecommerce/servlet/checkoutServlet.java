@@ -32,12 +32,16 @@ public class checkoutServlet extends HttpServlet {
                     HttpSession session = request.getSession();
                     session.setAttribute("message", "Sorry!! We have Only " + Pquant + " products are available for " + productname[i]);
                  
-                    String path = request.getContextPath();
-                    response.sendRedirect(path + "/jsp/checkout.jsp");
-                    return;
+//                    String path = request.getContextPath();
+//                    response.sendRedirect(path + "/jsp/checkout.jsp");
+//                    return;
                 }
 
             }
+            
+                    String path = request.getContextPath();
+                    response.sendRedirect(path + "/jsp/checkout.jsp");
+                    return;
 
         }
     }

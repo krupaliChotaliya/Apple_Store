@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>login Page</title>
         <%@include file="../components/common_css_js.jsp" %>
-     
+
     </head>
     <body>
         <%@include file="../components/navbar.jsp" %>
@@ -26,10 +26,11 @@
                 <a href="./signup.jsp">if u are not Register</a>
             </form>
         </div>
+     
         <script>
 
             $(document).ready(function () {
-         
+
                 $('#login-form').on('submit', function (event) {
 
                     event.preventDefault();
