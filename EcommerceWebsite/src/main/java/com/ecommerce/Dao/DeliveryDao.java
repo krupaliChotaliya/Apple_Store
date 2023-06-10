@@ -14,7 +14,7 @@ public class DeliveryDao {
     }
 
 //    save delivery data to delivery table
-    public void saveDelivery(Delivery d) {
+    public void addDelivery(Delivery d) {
 
         Session session = null;
         Transaction tx;

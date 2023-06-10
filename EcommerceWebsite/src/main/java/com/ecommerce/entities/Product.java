@@ -26,14 +26,16 @@ public class Product {
     @Column(length = 100)
     private int pDiscount;
     @Column(length = 100)
-    private int pQuantity;
+    private int pQuantity; 
+    @Column(length = 100)
+    private int available_quantity;
     @ManyToOne
     @JoinColumn(name="category_categoryId",nullable = false)
     private Category category;
     @Column(name="pOhterPics")
     private String pOhterPics;
 
-    public Product(int pId, String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity) {
+    public Product(int pId, String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity,int available_quantity ) {
         this.pId = pId;
         this.pName = pName;
         this.pDescription = pDescription;
@@ -41,12 +43,13 @@ public class Product {
         this.pPrice = pPrice;
         this.pDiscount = pDiscount;
         this.pQuantity = pQuantity;
+        this.available_quantity=available_quantity;
     }
 
     public Product() {
     }
 
-    public Product(String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity,Category category) {
+    public Product(String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity,Category category,int available_quantity) {
         this.pName = pName;
         this.pDescription = pDescription;
         this.pPic = pPic;
@@ -54,6 +57,16 @@ public class Product {
         this.pDiscount = pDiscount;
         this.pQuantity = pQuantity;
         this.category=category;
+        this.available_quantity=available_quantity;
+        
+    }
+
+    public int getAvailable_quantity() {
+        return available_quantity;
+    }
+
+    public void setAvailable_quantity(int available_quantity) {
+        this.available_quantity = available_quantity;
     }
 
     public int getpId() {

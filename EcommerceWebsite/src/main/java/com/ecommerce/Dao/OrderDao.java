@@ -41,52 +41,18 @@ public class OrderDao {
 
     }
 
-    //update payment status in Orders table
-    public int updateOrder(String payment_id, String order_id, String status) {
-
-        int result = 0;
-        Session session = null;
-        Transaction tx;
-        try {
-
-            session = this.factory.openSession();
-            tx = session.beginTransaction();
-            Query q = session.createQuery("update Orders set payment_id=:p,Status=:s where order_id=:id");
-            q.setParameter("p", payment_id);
-            q.setParameter("s", status);
-            q.setParameter("id", order_id);
-            result = q.executeUpdate();
-              tx.commit();
-
-        } catch (Exception e) {
-
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();
-                System.out.println("[updateOrder]Exception occurs while updating order into orders table" + e);
-            }
-
-        } finally {
-
-            session.close();
-
-        }
-
-        return result;
-
-    }
-
     //get order by order_id
     public Orders getOrderByOrderId(String orderid) {
 
         Orders order = null;
         Session session = null;
         Transaction tx;
-   
+
         try {
 
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("from Orders where order_id=:id");
+            Query q = session.createQuery("from Orders where order_id =:id");
             q.setParameter("id", orderid);
             order = (Orders) q.uniqueResult();
             tx.commit();
@@ -107,5 +73,4 @@ public class OrderDao {
 
     }
 
-    
 }

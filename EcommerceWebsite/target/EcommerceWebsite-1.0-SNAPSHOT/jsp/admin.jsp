@@ -43,7 +43,8 @@
                 <span class="navbar-brand mb-0 h1">Admin Panel</span>
             </div>
             <ul class="navbar-nav ml-auto">
-                <%                    User user1 = (User) session.getAttribute("current-user");
+                <%                    
+                    User user1 = (User) session.getAttribute("current-user");
                     if (user1 == null) { %>
                 <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/jsp/login.jsp">Login <span class="sr-only">(current)</span></a>
@@ -172,6 +173,8 @@
 
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!--end category modal-->
+                            
                                <!-- error message toast-->
                             <div class="toast toast2 align-items-center position-fixed top-0 end-0 p-3 text-bg-danger m-5 border-0" role="alert" aria-live="assertive" aria-atomic="true">
                                 <div class="d-flex">

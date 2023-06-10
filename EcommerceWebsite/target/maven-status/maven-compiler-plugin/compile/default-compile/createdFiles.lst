@@ -18,5 +18,5 @@ com\ecommerce\servlet\productOperationServlet.class
 com\ecommerce\entities\Delivery.class
 com\ecommerce\razorpay\OrderProcess.class
 com\ecommerce\Dao\Order_ProductDao.class
-com\ecommerce\servlet\checkoutServlet.class
+com\ecommerce\entities\Order.class
 com\ecommerce\servlet\signupServlet.class

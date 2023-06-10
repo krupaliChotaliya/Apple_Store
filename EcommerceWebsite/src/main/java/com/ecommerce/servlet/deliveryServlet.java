@@ -48,7 +48,7 @@ public class deliveryServlet extends HttpServlet {
 
             //sending delivery data to deliveryDao
             DeliveryDao deliverydao = new DeliveryDao(factoryProvider.getfactory());
-            deliverydao.saveDelivery(d);
+            deliverydao.addDelivery(d);
 
             session.setAttribute("deliveryStatus", "done");
             
