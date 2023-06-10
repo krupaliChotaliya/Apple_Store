@@ -35,9 +35,8 @@ public class pagebody extends TagSupport {
             ProductDao productdao = new ProductDao(factoryProvider.getfactory());
             List<Product> plist = productdao.getProductsById(c.getCategoryId());
 
-            for (Product p : plist) {
-               
-                out.print(" <div class=\"col-md-4\">\n" +
+                for (Product p : plist) {               
+                out.print(" <div class=\"col-md-4\"  data-toggle=\"modal\" data-target=\"#productDetails\">\n" +
 "                <div class=\"card \" style=\"width: 22rem;\">\n" +
 "                    <img class=\"card-img-top\" src=\"../img/products/"+p.getpPic()+"\" alt=\"Card image cap\">\n" +
 "                    <div class=\"card-body py-4\">\n" +
@@ -51,8 +50,9 @@ public class pagebody extends TagSupport {
 "                        <a href=\"#\" class=\"btn btn-success m-2\">Buy Now</a>\n" +
 "                    </div>    \n" +
 "                </div>\n" +
-"\n" +
-"            </div>");
+"\n</div>"
+        
+       );
             }
 
           

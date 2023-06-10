@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 //to store img,audio,video types data above annotation is used.
-@MultipartConfig(location = "E:\\krupali\\Sem5Project\\EcommerceWebsite\\src\\main\\webapp\\img\\products")
+@MultipartConfig(location = "E:\\krupali\\Sem5Project\\Apple_Store\\EcommerceWebsite\\src\\main\\webapp\\img\\products")
 @WebServlet(name = "productOperationServlet", urlPatterns = {"/productOperationServlet"})
 public class productOperationServlet extends HttpServlet {
 
@@ -66,6 +66,7 @@ public class productOperationServlet extends HttpServlet {
                 p.setpDescription(pdescription);
                 p.setCategory(category);
                 p.setpQuantity(pQuantity);
+                p.setAvailable_quantity(pQuantity);
                 p.setpPrice(pPrice);
                 p.setpDiscount(pDiscount);
                 p.setpPic(pname + "_0.jpg");

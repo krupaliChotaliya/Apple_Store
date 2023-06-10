@@ -139,15 +139,15 @@ public class ProductDao {
 
     }
 
-    //to get quantity by product name
-    public int quantityByProductName(String name) {
+    //to get  available_quantity by product name
+    public int availableQuantityByProductName(String name) {
         Session session = null;
         int quantity = 0;
         Transaction tx;
         try {
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("select pQuantity from Product where pName=:p");
+            Query q = session.createQuery("select available_quantity from Product where pName=:p");
             q.setParameter("p", name);
             quantity = (int) q.uniqueResult();
             tx.commit();
@@ -163,4 +163,35 @@ public class ProductDao {
         }
         return quantity;
     }
+
+    //update available qunatity using productname
+    public void updateAvailableQuanity(String productname, int quantity) {
+
+        Session session = null;
+        Transaction tx;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+
+            String query = "update Product set available_quantity = ? where pName = ?";
+            Query updateQuery = session.createQuery(query);
+            updateQuery.setParameter(0, quantity);
+            updateQuery.setParameter(1, productname);
+            updateQuery.executeUpdate();
+
+            tx.commit();
+
+        } catch (Exception e) {
+
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[updateAvailableQuanity]Exception occurs while updating AvailableQuanity using product_name in database" + e);
+
+        } finally {
+
+            session.close();
+        }
+    }
+
 }

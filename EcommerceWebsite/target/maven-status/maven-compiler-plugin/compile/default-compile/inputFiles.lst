@@ -3,13 +3,13 @@ E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\entities\User.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\helper\factoryProvider.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\entities\Orders.java
-E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\servlet\checkoutServlet.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\servlet\signupServlet.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\entities\Order_Product.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\servlet\deliveryServlet.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\Dao\DeliveryDao.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\entities\Delivery.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\Dao\userDao.java
+E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\entities\Order.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\servlet\loginServlet.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\razorpay\OrderProcess.java
 E:\krupali\Sem5Project\Apple_Store\EcommerceWebsite\src\main\java\com\ecommerce\Dao\ProductDao.java

@@ -9,14 +9,7 @@
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     </head>
     <body>
-        <!--
-          This example requires updating your template:
-        
-          ```
-          <html class="h-full">
-          <body class="h-full">
-          ```
-        -->
+      
         <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
             <div class="text-center">
                 <p class="text-base font-semibold text-indigo-600">404</p>

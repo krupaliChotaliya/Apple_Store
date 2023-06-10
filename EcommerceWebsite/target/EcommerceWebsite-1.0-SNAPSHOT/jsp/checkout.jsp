@@ -21,93 +21,89 @@
     <body>
         <%@include file="../components/navbar.jsp" %>
         <%@include file="../components/message.jsp" %>
-        <div class="row rounded-3 " >
-            <div class="col-lg-5 mx-5">
-                <form action="../deliveryServlet" method="post" id="shippingForm">
-                    <div class="container py-2 mt-4 " >
+ 
+         <form action="../OrderCreation" method="post" id="shippingForm">
+         <div class="row" >         
+                <div class="col-lg-5 mx-5">  
+                        <div class="container py-2 mt-4 " >
                         <h3>Shipping Address</h3>
-                        <form class="form-control mt-4" >
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Name</label>
-                                <input type="text" class="form-control" name="name"  value="<%= user.getUserName()%>" id="name" placeholder="Enter name">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Phone no</label>
-                                <input type="number" class="form-control" name="phoneno" value="<%= user.getUserPhone()%>" id="phoneno"  placeholder="Phone no">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <select class="form-control custom-select" name="state">
-                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                    <option value="Assam">Assam</option>
-                                    <option value="Bihar">Bihar</option>
-                                    <option value="Chhattisgarh">Chhattisgarh</option>
-                                    <option value="Gujarat">Gujarat</option>
-                                    <option value="Haryana">Haryana</option>
-                                    <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                    <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                    <option value="Goa">Goa</option>
-                                    <option value="Jharkhand">Jharkhand</option>
-                                    <option value="Karnataka">Karnataka</option>
-                                    <option value="Kerala">Kerala</option>
-                                    <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                    <option value="Maharashtra">Maharashtra</option>
-                                    <option value="Manipur">Manipur</option>
-                                    <option value="Meghalaya">Meghalaya</option>
-                                    <option value="Mizoram">Mizoram</option>
-                                    <option value="Nagaland">Nagaland</option>
-                                    <option value="Odisha">Odisha</option>
-                                    <option value="Punjab">Punjab</option>
-                                    <option value="Rajasthan">Rajasthan</option>
-                                    <option value="Sikkim">Sikkim</option>
-                                    <option value="Tamil Nadu">Tamil Nadu</option>
-                                    <option value="Telangana">Telangana</option>
-                                    <option value="Tripura">Tripura</option>
-                                    <option value="Uttarakhand">Uttarakhand</option>
-                                    <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                    <option value="West Bengal">West Bengal</option>
-                                    <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                    <option value="Chandigarh">Chandigarh</option>
-                                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
-                                    <option value="Daman and Diu">Daman and Diu</option>
-                                    <option value="Delhi">Delhi</option>
-                                    <option value="Lakshadweep">Lakshadweep</option>
-                                    <option value="Puducherry">Puducherry</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Pincode</label>
-                                <input type="number" name="pincode" class="form-control" id="pincode" placeholder="Pincode">
-                            </div>
-                            <div class="form-group">
-                                <label for="">City</label>
-                                <input type="text" name="city" class="form-control" id="city" placeholder="City">
-                            </div>
-                            <div class="form-group">
-                                <label for="landmark">landmark</label>
-                                <input type="text" name="landmark" class="form-control" id="landmark" placeholder="landmark (optional)">
-                            </div>
-                            <div class="form-group">
-                                <label for="Address">Address</label>
-                                <textarea class="form-control" name="address"  id="address"><%= user.getUserAddress()%> </textarea>
-                            </div>
-                            <button type="submit" class="btn btn-warning btn-block text-bg-warning mt-2">Save</button>                         
-                        </form>                         
-                    </div>    
-                </form>
-            </div>
-            <div class="col-lg-6 mt-5">
-                <form action="../OrderCreation" method="post" id="checkoutform" >
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Name</label>
+                            <input type="text" class="form-control" name="name"  value="<%= user.getUserName()%>" id="name" placeholder="Enter name">
+                        </div>
+                         <div class="form-group">
+                            <label for="exampleInputPassword1">Phone no</label>
+                            <input type="number" class="form-control" name="phoneno" value="<%= user.getUserPhone()%>" id="phoneno"  placeholder="Phone no">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select class="form-control custom-select" name="state">
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                                <option value="Daman and Diu">Daman and Diu</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                                <option value="Puducherry">Puducherry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Pincode</label>
+                            <input type="number" name="pincode" class="form-control" id="pincode" placeholder="Pincode">
+                        </div>
+                        <div class="form-group">
+                            <label for="">City</label>
+                            <input type="text" name="city" class="form-control" id="city" placeholder="City">
+                        </div>
+                        <div class="form-group">
+                            <label for="landmark">landmark</label>
+                            <input type="text" name="landmark" class="form-control" id="landmark" placeholder="landmark (optional)">
+                        </div>
+                        <div class="form-group">
+                            <label for="Address">Address</label>
+                            <textarea class="form-control" name="address"  id="address"><%= user.getUserAddress()%> </textarea>
+                        </div>  
+                    </div>
+                </div>     
+                <div class="col-lg-6 mt-5">       
                     <div class="card bg-dark">
-                        <div class="cart-body"> </div>
-                        <button type="submit" class="btn btn-success text-white mt-3">Checkout</button>
-                    </div>   
-                </form>
-            </div>                 
-        </div>      
-        <!-- start toast :: error msg-->
+                        <div class="cart-body"> </div>               
+                    </div>
+                     <button type="submit" class="btn btn-success text-white mt-3">Checkout</button>
+                </div>
+         </div>
+        </form>           
+
+          <!-- start toast :: error msg-->
         <div class="toast align-items-center position-fixed top-0 end-0 text-bg-danger mt-5 mr-2 p-2 border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body fs-6" id="toast-content">
@@ -117,6 +113,8 @@
         </div>
         <!--end toast-->
 
+        
+                        
 
         <script>
 
@@ -180,35 +178,12 @@
 
                 function handleFormSubmit(event) {
 
+                console.log("hi");
                     if (validation()) {
 
                         event.preventDefault();
                     }
                 }
-
-                    //validation of checkout form
-            <%
-              
-                String deliveryStatus = (String) session.getAttribute("deliveryStatus");
-                if (deliveryStatus != "done") {
-            %>
-
-            
-                const checkoutform = document.getElementById('checkoutform');
-                checkoutform.addEventListener('submit', handleFormSubmit2);
-
-                function handleFormSubmit2(event) {
-
-                    if (validation()) {
-
-                        event.preventDefault();
-                        document.getElementById('toast-content').innerHTML = "please fill Shipping details first!!";
-                        $(".toast").toast("show");
-                    }
-
-                }
-
-            <% } %>
 
             });
         </script>
@@ -217,7 +192,7 @@
             //payment prompt
             <%
                 String orderId = (String) session.getAttribute("orderId");
-                if (orderId != null && deliveryStatus == "done") {
+                if (orderId != null) {
             %>
 
             let amount = $("#payment_field").val();
@@ -269,6 +244,7 @@
                         payment_id: payment_id,
                         order_id: order_id,
                         status: status
+
                     }),
                     type: "post",
                     contentType: "application/json",
@@ -300,7 +276,7 @@
             }
             session.removeAttribute("orderId");
 
-            
+
         %>
     </body>
 </html>
