@@ -95,10 +95,10 @@
                     </div>
                 </div>     
                 <div class="col-lg-6 mt-5">       
-                    <div class="card bg-dark">
+                    <div class="card bg-dark text-white">
                         <div class="cart-body"> </div>               
                     </div>
-                     <button type="submit" class="btn btn-success text-white mt-3">Checkout</button>
+                     <button type="submit" class="btn btn-success text-white mt-3 cart-checkout">Checkout</button>
                 </div>
          </div>
         </form>           
