@@ -43,8 +43,7 @@ function updateCart() {
     let cart = JSON.parse(cartString);
     if (cart == null || cart.length == 0)
     {
-
-        $(".cart-body").html("<h3>Cart does not have any items</h3>");
+        $(".cart-body").html("<h3>Your cart is empty</h3>");
         $(".cart-items").html("(0)");
         $(".cart-checkout").addClass("disabled");
     } else {
@@ -85,9 +84,9 @@ function updateCart() {
             `
             totalPrice += item.productPrice * item.productQuantity;
             $("#" + item.productID).prop('disabled', true);
-              
+
         })
-        
+
         table += `<td  colspan='6' class="text-right font-weight-bold py-2"><h5>Total Amount : &#8377; ${totalPrice}/- </h5>
            <input type="hidden" name="total" value="${totalPrice}"/> </td>`
         table = table + `</table>`;
@@ -115,16 +114,24 @@ function showtoast(content) {
 //to remove product from cart
 function deleteItemFromCart(pid)
 {
-
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    let newProduct = cart.filter((item) =>
-        item.productID != pid
-    );
-    localStorage.setItem("cart", JSON.stringify(newProduct));
-
-    updateCart();
-   
-
+    swal({
+        title: "Are you sure?",
+        text: "Do you really want to remove item from cart?",
+        icon: "warning",
+        buttons: ["No", "Yes"],
+        dangerMode: true,
+    })
+            .then((willDelete) => {
+                if (willDelete) {
+                    let cart = JSON.parse(localStorage.getItem('cart'));
+                    let newProduct = cart.filter((item) =>
+                        item.productID != pid
+                    );
+                    localStorage.setItem("cart", JSON.stringify(newProduct));
+                    updateCart();
+                    location.reload();
+                }
+            });
 }
 
 
