@@ -11,7 +11,7 @@
     <body>
          <%@include file="../components/navbar.jsp" %>
      
-         <t:pagebody productname="desktop"></t:pagebody>
+         <t:pagebody categoryname="desktop"></t:pagebody>
         
     </body>
 </html>
