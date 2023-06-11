@@ -139,12 +139,14 @@ public class OrderProcess extends HttpServlet {
 
     //sending data to productDao to update available quantity
     public void updateAvailableQuanity(String[] quantity, String[] productname) {
-
         ProductDao pdao = new ProductDao(factoryProvider.getfactory());
+
         for (int i = 0; i < productname.length; i++) {
-            
-           int qunat= Integer.parseInt(quantity[i]);
-            pdao.updateAvailableQuanity(productname[i],qunat );
+
+            int oldquant = pdao.availableQuantityByProductName(productname[i]);
+
+            int newqunat = oldquant - Integer.parseInt(quantity[i]);
+            pdao.updateAvailableQuanity(productname[i], newqunat);
         }
     }
 }

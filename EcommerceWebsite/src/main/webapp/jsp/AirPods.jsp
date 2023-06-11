@@ -11,7 +11,7 @@
     <body>
          <%@include file="../components/navbar.jsp" %>
      
-         <t:pagebody productname="Airpods"></t:pagebody>
+         <t:pagebody categoryname="Airpods"></t:pagebody>
         
     </body>
 </html>

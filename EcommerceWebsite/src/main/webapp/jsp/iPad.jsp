@@ -12,7 +12,7 @@
     <body>
          <%@include file="../components/navbar.jsp" %>
      
-         <t:pagebody productname="ipad"></t:pagebody>
+         <t:pagebody categoryname="ipad"></t:pagebody>
          
          
          

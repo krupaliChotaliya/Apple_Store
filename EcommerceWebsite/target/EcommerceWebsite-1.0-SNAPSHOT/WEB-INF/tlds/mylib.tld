@@ -13,7 +13,7 @@
       <body-content>scriptless</body-content>
       
       <attribute>
-          <name>productname</name>
+          <name>categoryname</name>
           <required>true</required>
       </attribute>
   </tag>

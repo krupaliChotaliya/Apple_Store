@@ -11,7 +11,7 @@
     <body>
          <%@include file="../components/navbar.jsp" %>
      
-         <t:pagebody productname="watch"></t:pagebody>
+         <t:pagebody categoryname="watch"></t:pagebody>
         
     </body>
 </html>

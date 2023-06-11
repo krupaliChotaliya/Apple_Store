@@ -1,10 +1,10 @@
 com\ecommerce\servlet\loginServlet.class
 com\ecommerce\Dao\userDao.class
 com\ecommerce\razorpay\OrderCreation.class
+com\ecommerce\servlet\productDetailsServlet.class
 com\ecommerce\helper\helper.class
 com\ecommerce\entities\Product.class
 com\ecommerce\Dao\DeliveryDao.class
-com\ecommerce\servlet\deliveryServlet.class
 com\ecommerce\Dao\CategoryDao.class
 com\ecommerce\entities\Order_Product.class
 com\ecommerce\entities\Orders.class
@@ -18,5 +18,4 @@ com\ecommerce\servlet\productOperationServlet.class
 com\ecommerce\entities\Delivery.class
 com\ecommerce\razorpay\OrderProcess.class
 com\ecommerce\Dao\Order_ProductDao.class
-com\ecommerce\entities\Order.class
 com\ecommerce\servlet\signupServlet.class
