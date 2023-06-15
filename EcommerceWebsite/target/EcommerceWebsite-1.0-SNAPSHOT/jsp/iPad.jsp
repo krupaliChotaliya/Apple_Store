@@ -13,9 +13,6 @@
          <%@include file="../components/navbar.jsp" %>
      
          <t:pagebody categoryname="ipad"></t:pagebody>
-         
-         
-         
-        
+     
     </body>
 </html>

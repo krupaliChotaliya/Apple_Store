@@ -5,28 +5,40 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>login Page</title>
-        <%@include file="../components/common_css_js.jsp" %>
 
+        <link rel="stylesheet" href="../css/login.css"/>
+        <%@include file="../components/common_css_js.jsp" %>
     </head>
     <body>
-        <%@include file="../components/navbar.jsp" %>
-        <%@include file="../components/message.jsp" %>
-        <div class="container mt-5">
+        <header>
+            <%@include file="../components/navbar.jsp" %>
+             <%@include file="../components/message.jsp" %>
+        </header>
+          
+        <div class="box">
+            <span class="borderLine"></span>
             <form action="loginServlet" method="post" id="login-form">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <h2>Log in</h2>
+                <div class="inputBox">
+                    <input type="text" name="email" required="required">
+                    <span>Email</span>
+                    <i></i>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <div class="inputBox">
+                    <input type="password" name="password" required="required">
+                    <span>Password</span>
+                    <i></i>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button> 
-                <a href="./signup.jsp">if u are not Register</a>
+                <div class="Links">
+                    <a href="./signup.jsp">Create account</a>
+                </div>
+                <input type="submit" value="Login">
             </form>
         </div>
-     
+
         <script>
 
             $(document).ready(function () {

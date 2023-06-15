@@ -275,8 +275,6 @@
         <%
             }
             session.removeAttribute("orderId");
-
-
         %>
     </body>
 </html>
