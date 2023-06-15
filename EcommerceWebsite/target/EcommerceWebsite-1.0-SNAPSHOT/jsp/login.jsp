@@ -7,7 +7,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>login Page</title>
+        <link rel="icon" href="../img/media/titlebarlogo.png"  type="image/x-icon"/>
+        <title>login</title>
 
         <link rel="stylesheet" href="../css/login.css"/>
         <%@include file="../components/common_css_js.jsp" %>
@@ -15,9 +16,9 @@
     <body>
         <header>
             <%@include file="../components/navbar.jsp" %>
-             <%@include file="../components/message.jsp" %>
+            <%@include file="../components/message.jsp" %>
         </header>
-          
+
         <div class="box">
             <span class="borderLine"></span>
             <form action="loginServlet" method="post" id="login-form">

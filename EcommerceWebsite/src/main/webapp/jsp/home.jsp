@@ -10,6 +10,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>home</title>
+        <link rel="icon" href="${pageContext.request.contextPath}/img/media/titlebarlogo.png"  type="image/x-icon"/>
         <%@include file="../components/common_css_js.jsp" %>
 
         <!-- Style CSS -->
@@ -25,7 +26,7 @@
         </header>
         <!-- Navbar Section Exit -->
 
-        
+
         <!--Banner Section Start-->
         <section class="banner-wrapper wrapper">
             <div class="container">
@@ -42,7 +43,7 @@
                             <p>Unlock your creativity and enhance your skills with Today at Apple. Join our free workshops, sessions, and events led by talented artists, photographers, musicians, and experts.</p>
 
                             <p class="mt-5">Let's get started!</p>
-                            <a href="#" class="btn main-btn mt-5">Request a Proposal</a>
+                            <a href="#" class="btn main-btn mt-5">Learn more</a>
                         </div>
                     </div>
                     <div class="col-lg-6 mb-5 order-lg-2 order-1">

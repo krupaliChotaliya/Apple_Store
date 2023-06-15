@@ -15,6 +15,7 @@
 <html>
     <head>
         <title>Payment Integration</title>
+         <link rel="icon" href="../img/media/titlebarlogo.png"  type="image/x-icon"/>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     </head>
     <%@include file="../components/common_css_js.jsp" %>

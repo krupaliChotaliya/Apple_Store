@@ -5,11 +5,13 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="icon" href="${pageContext.request.contextPath}/img/media/titlebarlogo.png"  type="image/x-icon"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>404</title>
         <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     </head>
     <body>
-      
+
         <main class="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
             <div class="text-center">
                 <p class="text-base font-semibold text-indigo-600">404</p>

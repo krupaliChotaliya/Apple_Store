@@ -8,6 +8,7 @@
         <title>sign up</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="../img/media/titlebarlogo.png"  type="image/x-icon"/>
         <link rel="stylesheet" href="../css/signup.css"/>
         <%@include file="../components/common_css_js.jsp" %>
     </head>
