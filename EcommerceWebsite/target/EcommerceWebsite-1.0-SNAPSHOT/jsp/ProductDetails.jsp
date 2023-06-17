@@ -3,9 +3,6 @@
     Product p = (Product) session.getAttribute("productdetails");
     String pics = p.getpOhterPics();
     String[] a = pics.split(",");
-
-   
-
 %>
 
 <%@page import="com.ecommerce.entities.Product"%>
@@ -14,6 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="../img/media/titlebarlogo.png"  type="image/x-icon"/>
         <title><%= p.getpName()%></title>
         <%@include  file="../components/common_css_js.jsp" %>
     </head>
@@ -28,13 +26,13 @@
                                 <img class="d-block w-100" src="../img/products/<%= p.getpPic()%>" alt="First slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="../img/products/<%= a[0] %>" alt="Second slide">
+                                <img class="d-block w-100" src="../img/products/<%= a[0]%>" alt="Second slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="../img/products/<%= a[1] %>" alt="Third slide">
+                                <img class="d-block w-100" src="../img/products/<%= a[1]%>" alt="Third slide">
                             </div>
                             <div class="carousel-item">
-                                <img class="d-block w-100" src="../img/products/<%= a[2] %>" alt="Third slide">
+                                <img class="d-block w-100" src="../img/products/<%= a[2]%>" alt="Third slide">
                             </div>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

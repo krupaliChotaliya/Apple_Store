@@ -24,13 +24,16 @@ public class productDetailsServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String pname = request.getParameter("productname");
-
+            out.print(pname);
+            
             ProductDao pdao = new ProductDao(factoryProvider.getfactory());
             Product product = pdao.getProductByname(pname);
 
             HttpSession session = request.getSession();
             session.setAttribute("productdetails", product);
 
+              out.print(product);
+            
             String path = request.getContextPath();
             response.sendRedirect(path + "/jsp/ProductDetails.jsp");
         }
