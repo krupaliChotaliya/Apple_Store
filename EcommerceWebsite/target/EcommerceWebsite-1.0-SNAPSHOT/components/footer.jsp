@@ -8,6 +8,7 @@
     color: white;
     padding-bottom: 0rem;
     overflow-x: hidden;
+    
 }
 
 .footer_wrapper .footer-logo img {
@@ -17,7 +18,7 @@
 }
 
 .footer_wrapper h5 {
-    color: var(--white-color);
+    color: white;
     margin-bottom: 2rem;
     font-weight: 600;
     text-transform: capitalize;
@@ -25,10 +26,11 @@
 }
 
 .footer_wrapper h5 a {
-    color: var(--white-color);
+    color: white;
 }
 
 .footer_wrapper ul {
+    
     list-style: none;
     display: flex;
     align-items: center;
@@ -36,6 +38,7 @@
 
 
 .footer_wrapper ul li {
+   
     margin-right: 1.5rem;
 }
 
@@ -68,9 +71,9 @@
 
 
 <!-- Footer section Start-->
-<section class="footer_wrapper wrapper">
+<section class="footer_wrapper wrapper mb-0">
     <div class="container">
-        <div class="row align-items-center mb-5">
+        <div class="row  mb-5">
 
             <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
                 <h3>Shop and Learn</h3>
@@ -120,7 +123,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid copyright-section   ">
+    <div class="container-fluid copyright-section ">
         <p>Copyright© 2023 Apple Inc. All Rights Reserved</p>
     </div>
 </section>

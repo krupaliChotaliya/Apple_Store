@@ -1,19 +1,17 @@
 <%@page import="com.ecommerce.entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error.jsp" %>
-
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>home</title>
-        <link rel="icon" href="${pageContext.request.contextPath}/img/media/titlebarlogo.png"  type="image/x-icon"/>
-        <%@include file="../components/common_css_js.jsp" %>
+        <!-- bootstrap CDN -->
+         <%@include file="../components/common_css_js.jsp" %>
 
-        <!-- Style CSS -->
+        <!-- Own CSS -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
 
 
@@ -384,5 +382,4 @@
         <!-- Footer Section Exit  -->
 
     </body>
-
 </html>
