@@ -28,7 +28,7 @@ public class OrderProcess extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        StringBuilder requestBody = new StringBuilder();
+        StringBuffer requestBody = new StringBuffer();
         BufferedReader reader = request.getReader();
         String line;
         while ((line = reader.readLine()) != null) {
@@ -87,6 +87,7 @@ public class OrderProcess extends HttpServlet {
         myorder.setUser(user);
         myorder.setPayment_id(pid);
         myorder.setOrderDate(new Date());
+        
 
         OrderDao orderdao = new OrderDao(factoryProvider.getfactory());
         orderdao.addOrder(myorder);

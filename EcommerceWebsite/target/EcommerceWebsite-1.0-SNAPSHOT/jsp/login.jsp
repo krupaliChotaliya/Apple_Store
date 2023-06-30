@@ -54,24 +54,42 @@
                         type: 'POST',
                         data: form,
                         success: function (data, textStatus, jqXHR) {
-                            console.log(data);
+//                            console.log(data);
                             if (data.trim() === "invaild")
                             {
-                                swal("Wrong Credentials!!");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'login failed!!',
+                                    text: 'invalid login email or password !!',
+
+                                });
                             } else if (data.trim() === "normal") {
-                                swal("login Sucessfully!!").then((value) => {
+
+                                Swal.fire(
+                                        'login Successful!!',
+                                        'You are redirecting to home page!',
+                                        'success'
+                                        ).then((value) => {
                                     window.location = "home.jsp";
                                 });
+
                             } else
                             {
-                                swal("login Sucessfully!!").then((value) => {
-                                    window.location = "admin.jsp";
+                                Swal.fire(
+                                        'login Successful!!',
+                                        'You are redirecting to admin page!',
+                                        'success'
+                                        ).then((value) => {
+                                    window.location = "adminDashboard_user.jsp";
                                 });
-
                             }
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            swal("something went wrong..");
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'login failed!!',
+                                text: 'something went wrong!!',
+                            });
                         },
                         processData: false,
                         contentType: false

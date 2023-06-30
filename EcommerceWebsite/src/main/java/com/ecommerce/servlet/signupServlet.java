@@ -1,6 +1,6 @@
-
 package com.ecommerce.servlet;
 
+import com.ecommerce.Dao.userDao;
 import com.ecommerce.entities.User;
 import com.ecommerce.helper.factoryProvider;
 import java.io.IOException;
@@ -30,21 +30,13 @@ public class signupServlet extends HttpServlet {
                 String userPassword = request.getParameter("userPassword");
                 String userName = request.getParameter("userName");
                 String userPhone = request.getParameter("userPhone");
-//                String userPic=request.getParameter("userPic");
                 String userAddress = request.getParameter("userAddress");
 
-                if (userEmail.isEmpty()) {
-                    out.println("Please enter Email First!!");
-                    return;
-                }
+                User user = new User(userName, userEmail, userPassword, userPhone,userAddress, "normal","active");
 
-                User user = new User(userName, userEmail, userPassword, userPhone, "default.png", userAddress, "normal");
-
-                //to add user to database
-                hibernateSession = factoryProvider.getfactory().openSession();
-                tx = hibernateSession.beginTransaction();
-                int userId = (int) hibernateSession.save(user);
-                tx.commit();
+                //to user to userdao
+                userDao udao=new userDao(factoryProvider.getfactory());
+                int userId=udao.addUser(user);
 
                 String id = Integer.toString(userId);
                 if (id == null) {
@@ -67,40 +59,21 @@ public class signupServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+   
     @Override
     public String getServletInfo() {
         return "Short description";

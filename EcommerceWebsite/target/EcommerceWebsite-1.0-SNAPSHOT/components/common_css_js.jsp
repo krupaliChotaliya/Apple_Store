@@ -8,8 +8,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <!--jquery cdn-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<!--custom css-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+
+<!--common css-->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"/>
+
 <!--custom script-->
 <script src="${pageContext.request.contextPath}/js/script.js"></script>
 <!--font awesome cdn-->
@@ -21,5 +23,8 @@
 
 
 <!--website title bar icon-->
- <link rel="icon" href="../img/media/titlebarlogo.png"  type="image/x-icon"/>
+<link rel="icon" href="${pageContext.request.contextPath}/img/media/logo.png" type="image/x-icon"/>
 
+ <!--sweetalert cdn-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

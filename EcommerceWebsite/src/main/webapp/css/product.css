@@ -56,6 +56,8 @@ body {
 }
 
 
+
+
 /*
 ==========================================
    Custom CSS Design
@@ -361,10 +363,6 @@ FAQ section Design
 }
 
 
-
-
-
-
 @media (max-width: 991px) {
 
     /*custom classes  */
@@ -432,58 +430,6 @@ FAQ section Design
     }
 
 }
-
-
-
-
-/*footer*/
-
-.footer_wrapper {
-    background-color:black ;
-    padding-bottom: 0rem;
-    overflow-x: hidden;
-}
-
-.footer_wrapper .footer-logo img {
-    width: 25rem;
-    height: auto;
-    object-fit: cover;
-}
-.footer_wrapper h3{
-    color: var(--primary-color);
-    font-weight: 500;
-}
-.footer_wrapper h5 {
-    color: white;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-    text-transform: capitalize;
-    font-size: 1.3rem;
-}
-
-.footer_wrapper h5 a {
-    color: white;
-}
-
-.footer_wrapper ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-
-.footer_wrapper ul li {
-    margin-right: 1.5rem;
-}
-
-.footer_wrapper .copyright-section p {
-    margin: 0;
-    padding: 3rem 0;
-    text-align: center;
-}
-
-
-
 
 
 

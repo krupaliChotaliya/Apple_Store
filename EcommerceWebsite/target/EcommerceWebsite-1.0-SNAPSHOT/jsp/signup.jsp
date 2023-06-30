@@ -61,7 +61,6 @@
         <!--end toast-->
         <script>
             $(document).ready(function () {
-
                 //        signup form validation
                 $('#signup-form').on('submit', function (event) {
                     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -116,18 +115,31 @@
                         success: function (data, textStatus, jqXHR) {
                             if (data.trim() === "done")
                             {
-                                swal("Registered Sucessfully!!").then((value) => {
+                                Swal.fire(
+                                        'Registered Sucessfully!!',
+                                        'You are redirecting to login page!',
+                                        'success'
+                                        ).then((value) => {
                                     window.location = "login.jsp";
                                 });
 
+
                             } else
                             {
-                                swal("invaild Details!!");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Registration failed!!',
+                                    text: 'invaild details!!',
+                                });
                             }
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
 
-                            swal("something went wrong..");
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Registration failed!!',
+                                text: 'something went wrong!!',
+                            });
                         },
 
                         processData: false,

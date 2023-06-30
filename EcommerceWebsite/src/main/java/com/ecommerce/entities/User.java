@@ -12,7 +12,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
-
     private int userId;
     @Column(length = 100)
     private String userName;
@@ -23,33 +22,40 @@ public class User {
     @Column(length = 12)
     private String userPhone;
     @Column(length = 1500)
-    private String userPic;
-    @Column(length = 1500)
     private String userAddress;
-    private String userType;
+    private String userType;    
+    private String active;
 
-    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
+    public User(int userId, String userName, String userEmail, String userPassword, String userPhone, String userAddress, String userType, String active) {
         this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
-        this.userPic = userPic;
         this.userAddress = userAddress;
         this.userType = userType;
+        this.active = active;
     }
 
     public User() {
     }
 
-    public User(String userName, String userEmail, String userPassword, String userPhone, String userPic, String userAddress, String userType) {
+    public User(String userName, String userEmail, String userPassword, String userPhone, String userAddress, String userType, String active) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
-        this.userPic = userPic;
         this.userAddress = userAddress;
         this.userType = userType;
+        this.active = active;
+    }
+
+    public String getActive() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public int getUserId() {
@@ -100,14 +106,6 @@ public class User {
         this.userPhone = userPhone;
     }
 
-    public String getUserPic() {
-        return userPic;
-    }
-
-    public void setUserPic(String userPic) {
-        this.userPic = userPic;
-    }
-
     public String getUserAddress() {
         return userAddress;
     }
@@ -118,7 +116,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userPic=" + userPic + ", userAddress=" + userAddress + ", userType=" + userType + '}';
+        return "User{" + "userId=" + userId + ", userName=" + userName + ", userEmail=" + userEmail + ", userPassword=" + userPassword + ", userPhone=" + userPhone + ", userAddress=" + userAddress + ", userType=" + userType + '}';
     }
 
 }
