@@ -71,9 +71,9 @@ function updateCart() {
                         <div class="container">
                              <input type="hidden" name="productname" value="${item.productName}"/>
                              <input type="hidden" name="productprice" value="${item.productPrice}"/>
-                            <button type="button" onclick="decrementValue(${item.productID})" value="" />-</button>
-                            <input type="text" name="quantity" id="${item.productID}" maxlength="2" size="1" value="${item.productQuantity}"/>
-                            <button type="button" onclick="incrementValue(${item.productID})" value="" />+</button>
+                            <button type="button"  class="mb-2" onclick="decrementValue(${item.productID})" value="" style="width:25px" /><i class="fa fa-minus"></i></button>
+                            <input type="text" name="quantity" class="text-center" id="${item.productID}"  maxlength="2" size="1" value="${item.productQuantity}"/>
+                            <button type="button" class="mt-2" onclick="incrementValue(${item.productID})" value="" style="width:25px" /><i class="fa fa-plus"></i></button>
                         </div>
                     </td>
                     <td>${item.productPrice * item.productQuantity}</td>

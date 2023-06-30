@@ -19,9 +19,11 @@ public class helper {
             Query q1 = session.createQuery("select count(*) from Category");
             Query q2 = session.createQuery("select count(*) from Product");
             Query q3 = session.createQuery("select count(*) from User");
+            Query q4 = session.createQuery("select count(*) from Orders");
             Long categoryCount = (Long) q1.list().get(0);
             Long productCount = (Long) q2.list().get(0);
             Long userCount = (Long) q3.list().get(0);
+            Long orderCount = (Long) q4.list().get(0);
             tx.commit();
 
              map = new HashMap<String, Long>();
@@ -29,6 +31,7 @@ public class helper {
             map.put("productCount", productCount);
             map.put("categoryCount", categoryCount);
             map.put("userCount", userCount);
+            map.put("orderCount", orderCount);
 
         } catch (Exception e) {
             if (session.getTransaction() != null) {

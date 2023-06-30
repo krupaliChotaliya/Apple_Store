@@ -39,7 +39,7 @@ public class Orders {
      
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
-    
+  
 
     public Long getId() {
         return id;

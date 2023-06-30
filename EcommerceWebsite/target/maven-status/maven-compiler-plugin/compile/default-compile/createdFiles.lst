@@ -1,4 +1,5 @@
 com\ecommerce\servlet\loginServlet.class
+com\ecommerce\servlet\admin_UserServlet.class
 com\ecommerce\Dao\userDao.class
 com\ecommerce\razorpay\OrderCreation.class
 com\ecommerce\servlet\productDetailsServlet.class
@@ -14,8 +15,8 @@ com\ecommerce\entities\Category.class
 com\ecommerce\Dao\OrderDao.class
 com\ecommerce\helper\factoryProvider.class
 customTags\pagebody.class
-com\ecommerce\servlet\productOperationServlet.class
 com\ecommerce\entities\Delivery.class
 com\ecommerce\razorpay\OrderProcess.class
 com\ecommerce\Dao\Order_ProductDao.class
+com\ecommerce\servlet\admin_ProductServlet.class
 com\ecommerce\servlet\signupServlet.class

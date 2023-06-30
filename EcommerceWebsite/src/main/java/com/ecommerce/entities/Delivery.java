@@ -5,7 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 @Entity
 public class Delivery {
 
@@ -20,9 +21,10 @@ public class Delivery {
     private String city;
     private String landmark;
     @Column(length = 500)
-    private String address;
-   
-    @ManyToOne
+    private String address;   
+    
+    @OneToOne(targetEntity=Orders.class)  
+    @JoinColumn(name = "order_id", nullable = false)
     private Orders order;
 
     public int getId() {

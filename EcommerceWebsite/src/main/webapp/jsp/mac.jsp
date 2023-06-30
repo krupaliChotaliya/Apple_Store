@@ -17,6 +17,35 @@
         <%@include file="../components/common_css_js.jsp" %>
         <!-- OWN CSS -->
         <link rel="stylesheet" href="../css/product.css">
+        
+          <style>
+            .top-banner{
+                width:100%;
+                background: url('../img/media/macbanner.jpg') no-repeat center;
+                background-size:cover;
+                padding:16.875rem 0 9.375rem;
+
+            }
+
+            .story-section{
+                width:100%;
+                height:28.125rem;
+                background: url('../img/media/mac4.jpg') no-repeat center;
+                background-size: cover;
+                padding-top:100px;
+                text-align: center;
+            }
+
+            .book-food{
+                width:100%;
+                background:url('../img/media/mac3.jpg') no-repeat center;
+                background-size: cover;
+                background-attachment: fixed;
+                background-position:0 71.9125px;
+                padding:4.375rem 0;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -85,7 +114,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-7 col-md-12 mb-lg-0 mb-5">
                             <div class="card border-0">
-                                <img decoding="async" src="../img/media/14pro.jpeg" class="img-fluid">
+                                <img decoding="async" src="../img/media/mac1.png" class="img-fluid">
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-12 text-sec">
@@ -111,7 +140,7 @@
                         </div>
                         <div class="col-lg-7 col-md-12">
                             <div class="card border-0">
-                                <img decoding="async" src="../img/media/13pro.jpg" class="img-fluid">
+                                <img decoding="async" src="../img/media/mac2.jpg" class="img-fluid">
                             </div>
                         </div>
                     </div>
@@ -255,63 +284,8 @@
             </section>
 
             <!-- section-9 footer-->
+             <%@include file="../components/footer.jsp" %>
 
-
-            <section class="footer_wrapper wrapper bg-black">
-                <div class="container">
-                    <div class="row align-items-center mb-5">
-                        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                            <h3>Shop and Learn</h3>
-                            <h5><a href="#">Mac</a></h5>
-                            <h5><a href="#">iPad</a></h5>
-                            <h5><a href="#">iPhone</a></h5>
-                            <h5><a href="#">Watch</a></h5>
-                            <h5><a href="#">AirPods</a></h5>
-                            <h5><a href="#">Desktop</a></h5>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0 footer-logo">
-                            <h3>Apple Store</h3>
-                            <h5><a href="#">Genius Bar</a></h5>
-                            <h5><a href="#">Today at Apple</a></h5>
-                            <h5><a href="#">Apple camp</a></h5>
-                            <h5><a href="#">Apple Trade In</a></h5>
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                            <h3>For Education</h3>
-                            <h5><a href="#">Apple and Education</a></h5>
-                            <h5><a href="#">Shop For Education</a></h5>
-                            <h5><a href="#">Shop For University</a></h5>
-
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                            <h3>About Apple</h3>
-                            <h5><a href="#"></a>Newsroom</h5>
-                            <h5><a href="#"></a>Apple Leadership</h5>
-                            <h5><a href="#"></a>Career Oppoturnities</h5>
-                            <h5><a href="#"></a>Investors</h5>
-
-                        </div>
-                        <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                            <ul class="link-widget p-0">
-                                <li><a href="#"><img src="${pageContext.request.contextPath}/img/media/f.webp" /></a></li>
-                            <li><a href="#"><img src="${pageContext.request.contextPath}/img/media/i.webp" /></a></li>
-                            <li><a href="#"><img src="${pageContext.request.contextPath}/img/media/l.webp" /></a></li>
-                            <li><a href="#"><img src="${pageContext.request.contextPath}/img/media/t.webp" /></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid pt-5 px-0">
-                <div class="row">
-                    <div class="col-12">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14016.9363925419!2d77.18302375!3d28.5627323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1654846055849!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="container-fluid copyright-section   ">
-                <p>Copyright© 2023 Apple Inc. All Rights Reserved</p>
-            </div>
-        </section>
 
        <script>
 

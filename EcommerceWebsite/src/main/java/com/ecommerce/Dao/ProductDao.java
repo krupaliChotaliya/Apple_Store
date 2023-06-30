@@ -1,6 +1,8 @@
 package com.ecommerce.Dao;
 
+import com.ecommerce.entities.Category;
 import com.ecommerce.entities.Product;
+import com.ecommerce.entities.User;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -56,7 +58,8 @@ public class ProductDao {
 
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("from Product");
+            Query q = session.createQuery("from Product where active = ?");
+            q.setParameter(0, 1);
             product = q.list();
             tx.commit();
 
@@ -192,6 +195,180 @@ public class ProductDao {
 
             session.close();
         }
+    }
+
+    //get category name by product name
+    public String getCategoryNameByProductName(String pname) {
+
+        String name = null;
+        Session session = null;
+        Transaction tx;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+
+            String query = "SELECT categoryTitle FROM Category where categoryId IN( SELECT category from Product WHERE pName=?)";
+            Query q = session.createQuery(query);
+            q.setParameter(0, pname);
+            name = (String) q.uniqueResult();
+            tx.commit();
+
+        } catch (Exception e) {
+
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[getCategoryNameByProductName]Exception occurs while getting categoryname using product_name in database" + e);
+
+        } finally {
+
+            session.close();
+        }
+
+        return name;
+    }
+
+    //check whether product is exist or not 
+    public long IsProductExist(String pname) {
+
+        long id = 0;
+        Session session = null;
+        Transaction tx;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("select count(*) from Product where pName=:p");
+            q.setParameter("p", pname);
+            id = (long) q.uniqueResult();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+
+            System.out.println("[IsProductExist]Exception occurs while checking whether product is already exits or not " + e);
+        } finally {
+            session.close();
+        }
+
+        return id;
+
+    }
+
+    //update product
+    public int updateProduct(String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity, int available_quantity, String pOhterPics, Category category, int pid) {
+
+        Session session = null;
+        Transaction tx;
+        int result = 0;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+
+            String query = "update Product set pDescription = ?,pPic = ?,pPrice = ?,"
+                    + "pDiscount = ?,pQuantity = ?,available_quantity = ?,"
+                    + "pOhterPics = ?,category =? where pId = ?";
+            Query updateQuery = session.createQuery(query);
+            updateQuery.setParameter(0, pDescription);
+            updateQuery.setParameter(1, pPic);
+            updateQuery.setParameter(2, pPrice);
+            updateQuery.setParameter(3, pDiscount);
+            updateQuery.setParameter(4, pQuantity);
+            updateQuery.setParameter(5, available_quantity);
+            updateQuery.setParameter(6, pOhterPics);
+            updateQuery.setParameter(7, category);
+            updateQuery.setParameter(8, pid);
+            System.out.println(updateQuery);
+            result = updateQuery.executeUpdate();
+            System.out.println(updateQuery.executeUpdate());
+
+            tx.commit();
+
+        } catch (Exception e) {
+
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[updateProduct]Exception occurs while updating product in database" + e);
+
+        } finally {
+
+            session.close();
+        }
+
+        return result;
+    }
+
+    //delete product
+    public int deleteProduct(int id) {
+        Session session = null;
+        Transaction tx;
+        User user = null;
+        int result = 0;
+        try {
+
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+
+            String query = "update Product set active = ? where pId = ?";
+            Query updateQuery = session.createQuery(query);
+            updateQuery.setParameter(0, 0);
+            updateQuery.setParameter(1, id);
+            result = updateQuery.executeUpdate();
+
+            tx.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[deleteProduct]Exception while deleting the product " + e);
+
+        } finally {
+            session.close();
+        }
+        return result;
+
+    }
+
+    public Product getProductByPid(int id) {
+
+        Product product = null;
+        Session session = null;
+
+        try {
+
+            String query = "from Product where pId =:i";
+            session = this.factory.openSession();
+            session.beginTransaction();
+            Query q = session.createQuery(query);
+            q.setParameter("i", id);
+
+            product = (Product) q.uniqueResult();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[getProductByPid]Exception while getting the product using pid " + e);
+
+        } finally {
+            session.close();
+        }
+        return product;
+
+    }
+
+    public int caltotalamount(int discount, int price, int quantity) {
+        int result = 0;
+
+        int disc = (int) ((price * discount) / 100.00);
+        int p = price - disc;
+        result = p * quantity;
+
+        return result;
+
     }
 
 }

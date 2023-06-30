@@ -1,82 +1,60 @@
-<%@include file="../components/common_css_js.jsp" %>
-
 <style>
-    /* Footer CSS */
 
-.footer_wrapper {
-    background-color: black;
-    color: white;
-    padding-bottom: 0rem;
-    overflow-x: hidden;
-    
-}
+    /*footer*/
 
-.footer_wrapper .footer-logo img {
-    width: 25rem;
-    height: auto;
-    object-fit: cover;
-}
+    .footer_wrapper {
+        background-color:black ;
+        padding-bottom: 0rem;
+        overflow-x: hidden;
+    }
 
-.footer_wrapper h5 {
-    color: white;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    text-transform: capitalize;
-    font-size: 2rem;
-}
+    .footer_wrapper .footer-logo img {
+        width: 25rem;
+        height: auto;
+        object-fit: cover;
+    }
+    .footer_wrapper h3{
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+    .footer_wrapper h5 {
+        color: white;
+        margin-bottom: 1.5rem;
+        font-weight: 400;
+        text-transform: capitalize;
+        font-size: 1.3rem;
+    }
 
-.footer_wrapper h5 a {
-    color: white;
-}
+    .footer_wrapper h5 a {
+        color: white;
+    }
 
-.footer_wrapper ul {
-    
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-
-.footer_wrapper ul li {
-   
-    margin-right: 1.5rem;
-}
-
-.footer_wrapper .copyright-section p {
-    margin: 0;
-    padding: 3rem 0;
-    text-align: center;
-}
+    .footer_wrapper ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+    }
 
 
-/* whatsapp intgration */
-.whatsapp-icon {
-    position: relative;
-}
+    .footer_wrapper ul li {
+        margin-right: 1.5rem;
+    }
 
-.whatsapp-icon .whatsapp {
-    position: fixed;
-    width: 6rem;
-    z-index: 1;
-    bottom: 1rem;
-    right: 0.5rem;
-}
+    .footer_wrapper .copyright-section p {
+        margin: 0;
+        padding: 3rem 0;
+        text-align: center;
 
-.whatsapp-icon .whatsapp img {
-    width: 5.5rem;
+    }
 
-}
 </style>
 
-
-
-<!-- Footer section Start-->
-<section class="footer_wrapper wrapper mb-0">
+<%@include file="../components/common_css_js.jsp" %>
+<section class="footer_wrapper wrapper bg-black">
     <div class="container">
-        <div class="row  mb-5">
-
+        <div class="row align-items-center mb-5">
             <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                <h3>Shop and Learn</h3>
+                <h3 style="color:#00BFFF">Shop and Learn</h3>
                 <h5><a href="#">Mac</a></h5>
                 <h5><a href="#">iPad</a></h5>
                 <h5><a href="#">iPhone</a></h5>
@@ -85,21 +63,21 @@
                 <h5><a href="#">Desktop</a></h5>
             </div>
             <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0 footer-logo">
-                <h3>Apple Store</h3>
+                <h3 style="color:#00BFFF">Apple Store</h3>
                 <h5><a href="#">Genius Bar</a></h5>
                 <h5><a href="#">Today at Apple</a></h5>
                 <h5><a href="#">Apple camp</a></h5>
                 <h5><a href="#">Apple Trade In</a></h5>
             </div>
             <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                <h3>For Education</h3>
+                <h3 style="color:#00BFFF">For Education</h3>
                 <h5><a href="#">Apple and Education</a></h5>
                 <h5><a href="#">Shop For Education</a></h5>
                 <h5><a href="#">Shop For University</a></h5>
 
             </div>
             <div class="col-lg-4 col-sm-6 mb-5 mb-lg-0">
-                <h3>About Apple</h3>
+                <h3 style="color:#00BFFF">About Apple</h3>
                 <h5><a href="#"></a>Newsroom</h5>
                 <h5><a href="#"></a>Apple Leadership</h5>
                 <h5><a href="#"></a>Career Oppoturnities</h5>
@@ -123,8 +101,7 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid copyright-section ">
-        <p>Copyright© 2023 Apple Inc. All Rights Reserved</p>
+    <div class="container-fluid copyright-section   ">
+        <p style="color: white">Copyright© 2023 Apple Inc. All Rights Reserved</p>
     </div>
 </section>
-<!-- Footer Section Exit  -->

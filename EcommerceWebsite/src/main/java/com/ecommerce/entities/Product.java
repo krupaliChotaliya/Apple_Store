@@ -34,6 +34,7 @@ public class Product {
     private Category category;
     @Column(name="pOhterPics")
     private String pOhterPics;
+    private int active;
 
     public Product(int pId, String pName, String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity,int available_quantity ) {
         this.pId = pId;
@@ -135,6 +136,14 @@ public class Product {
 
     public String getpOhterPics() {
         return pOhterPics;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public void setActive(int active) {
+        this.active = active;
     }
 
     public void setpOhterPics(String pOhterPics) {
