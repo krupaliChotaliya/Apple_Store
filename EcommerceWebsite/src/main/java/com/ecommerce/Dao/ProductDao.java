@@ -1,8 +1,9 @@
 package com.ecommerce.Dao;
 
-import com.ecommerce.entities.Category;
 import com.ecommerce.entities.Product;
 import com.ecommerce.entities.User;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -228,7 +229,7 @@ public class ProductDao {
         return name;
     }
 
-    //check whether product is exist or not 
+    //check whether product is exist or not (pname+active)
     public long IsProductExist(String pname) {
 
         long id = 0;
@@ -237,8 +238,9 @@ public class ProductDao {
         try {
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("select count(*) from Product where pName=:p");
+            Query q = session.createQuery("select count(*) from Product where pName=:p and active=:a");
             q.setParameter("p", pname);
+            q.setParameter("a", 1);
             id = (long) q.uniqueResult();
             tx.commit();
 
@@ -256,47 +258,86 @@ public class ProductDao {
 
     }
 
-    //update product
-    public int updateProduct(String pDescription, String pPic, int pPrice, int pDiscount, int pQuantity, int available_quantity, String pOhterPics, Category category, int pid) {
+    //check whether only productname is exist or not (pname+Inactive)
+    public long IsOnlyProductNameExist(String pname) {
+        long result = 0;
+        Session session = null;
+        Transaction tx;       
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("select count(*) from Product where pName =:p");
+            q.setParameter("p", pname);
+            result = (long) q.uniqueResult();
+          
+            tx.commit();
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[IsOnlyProductNameExist]Exception occurs while checking whether only product name is exits or not " + e);
+            return result;
+        } finally {
+            session.close();
+        }
+        return result;
+    }
 
+    //update product
+    public int updateProduct(HashMap<String, ?> updatedValues, HashMap<String, ?> queryParams) {
+        int result = 0;
         Session session = null;
         Transaction tx;
-        int result = 0;
+        Product product;
         try {
             session = this.factory.openSession();
             tx = session.beginTransaction();
 
-            String query = "update Product set pDescription = ?,pPic = ?,pPrice = ?,"
-                    + "pDiscount = ?,pQuantity = ?,available_quantity = ?,"
-                    + "pOhterPics = ?,category =? where pId = ?";
+            Iterator<String> keyIterator = updatedValues.keySet().iterator();
+            Iterator<String> keyIterator2 = queryParams.keySet().iterator();
+            StringBuilder queryBuilder = new StringBuilder();
+            String queryParamKey = "";
+            queryBuilder.append("update Product set ");
+            while (keyIterator.hasNext()) {
+                queryBuilder.append(keyIterator.next() + " = ?");
+                if (keyIterator.hasNext()) {
+                    queryBuilder.append(",");
+                } else {
+                    if (keyIterator2.hasNext()) {
+                        queryParamKey = keyIterator2.next();
+                        queryBuilder.append("where " + queryParamKey + " = ?");
+                    }
+                }
+            }
+            String query = queryBuilder.toString();
             Query updateQuery = session.createQuery(query);
-            updateQuery.setParameter(0, pDescription);
-            updateQuery.setParameter(1, pPic);
-            updateQuery.setParameter(2, pPrice);
-            updateQuery.setParameter(3, pDiscount);
-            updateQuery.setParameter(4, pQuantity);
-            updateQuery.setParameter(5, available_quantity);
-            updateQuery.setParameter(6, pOhterPics);
-            updateQuery.setParameter(7, category);
-            updateQuery.setParameter(8, pid);
-            System.out.println(updateQuery);
-            result = updateQuery.executeUpdate();
-            System.out.println(updateQuery.executeUpdate());
+            System.out.println(updateQuery+"----");
 
+            Iterator<Object> valueIterator = (Iterator<Object>) updatedValues.values().iterator();
+
+            int index = 0;
+            while (valueIterator.hasNext()) {
+                updateQuery.setParameter(index, valueIterator.next());
+                index++;
+            }
+            updateQuery.setParameter(index, queryParams.get(queryParamKey));
+
+            System.out.println("Update Query: " + updateQuery.getQueryString());
+            result = updateQuery.executeUpdate();
+            System.out.println("result: " + result);
             tx.commit();
 
-        } catch (Exception e) {
-
+         } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
-            System.out.println("[updateProduct]Exception occurs while updating product in database" + e);
+
+            System.out.println("[updateProduct]Exception while updating the product " + e);
+            return result;
 
         } finally {
-
             session.close();
         }
-
         return result;
     }
 
@@ -332,6 +373,7 @@ public class ProductDao {
 
     }
 
+    //get product by product id
     public Product getProductByPid(int id) {
 
         Product product = null;
@@ -360,6 +402,7 @@ public class ProductDao {
 
     }
 
+    //calculate total amount including discount
     public int caltotalamount(int discount, int price, int quantity) {
         int result = 0;
 
@@ -368,7 +411,6 @@ public class ProductDao {
         result = p * quantity;
 
         return result;
-
     }
 
 }

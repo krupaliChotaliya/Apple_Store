@@ -4,6 +4,7 @@ import com.ecommerce.Dao.userDao;
 import com.ecommerce.entities.User;
 import com.ecommerce.helper.factoryProvider;
 import java.io.IOException;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpSession;
 public class admin_UserServlet extends HttpServlet {
 
     private userDao udao;
-
+    private HashMap<String, String> map = new HashMap<>();
+    private HashMap<String, Object> queryParams = new HashMap<>();
+    
     public admin_UserServlet() {
 
         udao = new userDao(factoryProvider.getfactory());
@@ -68,37 +71,85 @@ public class admin_UserServlet extends HttpServlet {
         user.setUserPhone(phone);
         user.setUserType(type);
         user.setActive("active");
-
         String id = request.getParameter("id");
 
+//        *********************add user******************
         if (id == null || id.isEmpty()) {
-            //adduser
-            int result = udao.addUser(user);
 
-            if (result > 0) {
-                HttpSession session = (HttpSession) request.getSession();
-                session.setAttribute("message", "user is added successfully!!");
+            //if user is exist (email+active)
+            userDao udao = new userDao(factoryProvider.getfactory());
+            int rowid = (int) udao.IsUserExist(email);
 
-                RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewUser.jsp");
-                rd.forward(request, response);
+            if (rowid > 0) {
 
+                HttpSession httpsession = request.getSession();
+                httpsession.setAttribute("message", "Sorry!! user is already exist!!");
+                response.sendRedirect("./jsp/viewUser.jsp");
+                return;
             }
 
-        } else {
+            //if only email id is exist
+            int isexist = (int) udao.IsUserEmailIdExist(email);
 
+            if (isexist > 0) {
+
+                map.put("userName", name);
+                map.put("userEmail", email);
+                map.put("userPassword", password);
+                map.put("userPhone", phone);
+                map.put("userAddress", address);
+                map.put("userType", type);
+                map.put("active", "active");
+
+                queryParams.put("userEmail", email);
+
+                int result = udao.updateUser(map, queryParams);
+                if (result > 0) {
+                    HttpSession session = (HttpSession) request.getSession();
+                    session.setAttribute("message", "Your changes have been successfully saved!!");
+                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewUser.jsp");
+                    rd.forward(request, response);
+
+                }
+            } 
+            else {
+                //if user is not exist then add user
+                int result = udao.addUser(user);
+                if (result > 0) {
+                    HttpSession session = (HttpSession) request.getSession();
+                    session.setAttribute("message", "user is added successfully!!");
+                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewUser.jsp");
+                    rd.forward(request, response);
+                }
+            }
+        } 
+//        *********************update user******************
+        else {
             //update user
-            int result = udao.updateUser(name, email, password, phone, address, type, "active", Integer.parseInt(id));
+
+            map.put("userName", name);
+            map.put("userEmail", email);
+            map.put("userPassword", password);
+            map.put("userPhone", phone);
+            map.put("userAddress", address);
+            map.put("userType", type);
+            map.put("active", "active");
+            
+            queryParams.clear();
+            queryParams.put("userId", Integer.parseInt(id));
+            
+            int result = udao.updateUser(map, queryParams);
             if (result > 0) {
                 HttpSession session = (HttpSession) request.getSession();
                 session.setAttribute("message", "Your changes have been successfully saved!!");
-
                 RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewUser.jsp");
                 rd.forward(request, response);
             }
         }
 
     }
-
+    
+//    delete user
     public void deleteuser(int id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int result = udao.deleteUser(id);
@@ -110,10 +161,10 @@ public class admin_UserServlet extends HttpServlet {
         }
     }
 
+//    update user
     public void updateuser(int id, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         udao = new userDao(factoryProvider.getfactory());
-
         request.setAttribute("user", udao.getuserbyid(id));
         RequestDispatcher rd = request.getRequestDispatcher("./jsp/addUser.jsp");
         rd.forward(request, response);
