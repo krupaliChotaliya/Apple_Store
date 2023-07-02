@@ -1,6 +1,8 @@
 package com.ecommerce.Dao;
 
 import com.ecommerce.entities.User;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -110,7 +112,7 @@ public class userDao {
             Query updateQuery = session.createQuery(query);
             updateQuery.setParameter(0, "inactive");
             updateQuery.setParameter(1, id);
-            result=updateQuery.executeUpdate();
+            result = updateQuery.executeUpdate();
 
             tx.commit();
 
@@ -126,36 +128,58 @@ public class userDao {
         return result;
     }
 
-    //update user
-    public int updateUser(String name, String email, String password, String phoneno, String address, String userType, String active, int id) {
+    //update user by using either userID or emailId
+    public int updateUser(HashMap<String, String> updatedValues, HashMap<String, ?> queryParams) {
         Session session = null;
         Transaction tx;
         User user = null;
         int result = 0;
         try {
-
             session = this.factory.openSession();
             tx = session.beginTransaction();
 
-            String query = "update User set userName = ?,userEmail = ?,userPassword = ?,userPhone = ?,userAddress = ?,userType=?,active=? where userId = ?";
-            Query updateQuery = session.createQuery(query);
-            updateQuery.setParameter(0, name);
-            updateQuery.setParameter(1, email);
-            updateQuery.setParameter(2, password);
-            updateQuery.setParameter(3, phoneno);
-            updateQuery.setParameter(4, address);
-            updateQuery.setParameter(5, userType);
-            updateQuery.setParameter(6, active);
-            updateQuery.setParameter(7, id);
-            result=updateQuery.executeUpdate();
+            Iterator<String> keyIterator = updatedValues.keySet().iterator();
+            Iterator<String> keyIterator2 = queryParams.keySet().iterator();
+            StringBuilder queryBuilder = new StringBuilder();
 
+            String queryParamKey = "";
+
+            queryBuilder.append("update User set ");
+            while (keyIterator.hasNext()) {
+                queryBuilder.append(keyIterator.next() + " = ?");
+                if (keyIterator.hasNext()) {
+                    queryBuilder.append(",");
+                } else {
+                    if (keyIterator2.hasNext()) {
+                        queryParamKey = keyIterator2.next();
+                        queryBuilder.append("where " + queryParamKey + " = ?");
+                    }
+                }
+            }
+            String query = queryBuilder.toString();
+            Query updateQuery = session.createQuery(query);
+
+            Iterator<String> valueIterator = updatedValues.values().iterator();
+
+            int index = 0;
+            while (valueIterator.hasNext()) {
+                updateQuery.setParameter(index, valueIterator.next());
+                index++;
+            }
+            updateQuery.setParameter(index, queryParams.get(queryParamKey));
+
+//            System.out.println("Update Query: " + updateQuery.getQueryString());
+            result = updateQuery.executeUpdate();
+//            System.out.println("result: " + result);
             tx.commit();
 
         } catch (Exception e) {
             if (session.getTransaction() != null) {
                 session.getTransaction().rollback();
             }
+
             System.out.println("[updateUser]Exception while updating the user " + e);
+            return result;
 
         } finally {
             session.close();
@@ -163,10 +187,11 @@ public class userDao {
         return result;
     }
 
+    //get user by id
     public User getuserbyid(int id) {
         User user = null;
         Session session = null;
-   
+
         try {
 
             String query = "from User where userId =:i";
@@ -174,7 +199,7 @@ public class userDao {
             session.beginTransaction();
             Query q = session.createQuery(query);
             q.setParameter("i", id);
-         
+
             user = (User) q.uniqueResult();
 
         } catch (Exception e) {
@@ -187,6 +212,58 @@ public class userDao {
             session.close();
         }
         return user;
-       
+
+    }
+
+    //check whether email_id and user both are exist (email+active)
+    public long IsUserExist(String email) {
+
+        long id = 0;
+        Session session = null;
+        Transaction tx;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("select count(*) from User where userEmail=:id and active=:a");
+            q.setParameter("id", email);
+            q.setParameter("a", "active");
+            id = (long) q.uniqueResult();
+
+            tx.commit();
+
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+
+            System.out.println("[IsUserExist]Exception occurs while checking whether user(email+active) is already exits or not " + e);
+        } finally {
+            session.close();
+        }
+        return id;
+    }
+
+    //check whether only email_id is exist (email+Inactive)
+    public long IsUserEmailIdExist(String email) {
+        long id = 0;
+        Session session = null;
+        Transaction tx;
+        try {
+            session = this.factory.openSession();
+            tx = session.beginTransaction();
+            Query q = session.createQuery("select count(*) from User where userEmail=:id");
+            q.setParameter("id", email);
+            id = (long) q.uniqueResult();
+            tx.commit();
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            System.out.println("[IsUserEmailIdExist]Exception occurs while checking whether only user email_id is exits or not " + e);
+            return id;
+        } finally {
+            session.close();
+        }
+        return id;
     }
 }
