@@ -120,7 +120,7 @@
                                         'You are redirecting to login page!',
                                         'success'
                                         ).then((value) => {
-                                    window.location = "login.jsp";
+                                    window.location = "login";
                                 });
 
 

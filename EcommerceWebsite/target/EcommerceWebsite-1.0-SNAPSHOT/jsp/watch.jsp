@@ -83,19 +83,19 @@
                             <h2>
                                 <span id="count1"></span>+
                             </h2>
-                            <p>SAVINGS</p>
+                            <p>Orders</p>
                         </div>
                         <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
                             <h2>
                                 <span id="count2"></span>+
                             </h2>
-                            <p>PHOTOS</p>
+                            <p>Reviews</p>
                         </div>
                         <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
                             <h2>
                                 <span id="count3"></span>+
                             </h2>
-                            <p>ROCKETS</p>
+                            <p>Customers</p>
                         </div>
                         <div class="col-md-3 mb-lg-0 mb-md-0 mb-5">
                             <h2>
@@ -174,7 +174,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="text-content text-center mt-3">
-                                <h2>Which iPhone is right for you?</h2>
+                                <h2>Which Watch is right for you?</h2>
                                 <hr></hr>
                             </div>
                         </div>

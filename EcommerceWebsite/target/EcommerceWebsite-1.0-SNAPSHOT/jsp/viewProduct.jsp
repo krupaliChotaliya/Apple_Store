@@ -23,7 +23,7 @@
         <div class="report-container">
             <div class="report-header">
                 <h2 class="recent-article">Product</h2>
-                <a href="${pageContext.request.contextPath}/jsp/addProduct.jsp"><button class="view" data-toggle="modal" data-target="#add-user-modal">add</button></a>
+                <a href="${pageContext.request.contextPath}/jsp/addProduct"><button class="view" data-toggle="modal" data-target="#add-user-modal">add</button></a>
             </div>
             <div class="report-body">
                 <div class="report-body">

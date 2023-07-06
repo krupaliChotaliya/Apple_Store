@@ -15,7 +15,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                <a type="button" href="${pageContext.request.contextPath}/jsp/checkout.jsp" class="btn btn-success text-white cart-checkout" >Checkout</a>
+                <a type="button" href="${pageContext.request.contextPath}/jsp/checkout" class="btn btn-success text-white cart-checkout" >Checkout</a>
             </div>
         </div>
     </div>
