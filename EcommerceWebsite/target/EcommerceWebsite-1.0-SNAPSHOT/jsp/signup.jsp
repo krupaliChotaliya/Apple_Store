@@ -129,7 +129,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Registration failed!!',
-                                    text: 'invaild details!!',
+                                    text: 'Sorry!! Email id is already exist!',
                                 });
                             }
                         },

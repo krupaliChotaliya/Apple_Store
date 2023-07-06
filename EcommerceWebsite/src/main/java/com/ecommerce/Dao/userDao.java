@@ -224,9 +224,8 @@ public class userDao {
         try {
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("select count(*) from User where userEmail=:id and active=:a");
-            q.setParameter("id", email);
-            q.setParameter("a", "active");
+            Query q = session.createQuery("select count(*) from User where userEmail=:id");
+            q.setParameter("id", email);   
             id = (long) q.uniqueResult();
 
             tx.commit();

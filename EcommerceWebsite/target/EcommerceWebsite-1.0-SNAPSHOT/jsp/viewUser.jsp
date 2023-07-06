@@ -1,3 +1,18 @@
+<%
+    User user = (User) session.getAttribute("current-user");
+    if (user == null) {
+        session.setAttribute("message", "You are not logged in!! login first");
+        response.sendRedirect("login");
+        return;
+    } else {
+        if (user.getUserType().equals("normal")) {
+            session.setAttribute("message", "Sorry!! You are not admin! Do not access this page.");
+            response.sendRedirect("login");
+            return;
+        }
+    } 
+%>
+
 <%@page import="java.util.List"%>
 <%@page import="com.ecommerce.entities.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

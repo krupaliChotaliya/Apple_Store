@@ -1,3 +1,18 @@
+<%
+    User user = (User) session.getAttribute("current-user");
+    if (user == null) {
+        session.setAttribute("message", "You are not logged in!! login first");
+        response.sendRedirect("login");
+        return;
+    } else {
+        if (user.getUserType().equals("normal")) {
+            session.setAttribute("message", "Sorry!! You are not admin! Do not access this page.");
+            response.sendRedirect("login");
+            return;
+        }
+    } 
+%>
+
 <%@page import="com.ecommerce.entities.User"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,7 +29,7 @@
             <form action="${pageContext.request.contextPath}/users" method="post" id="userform">
 
                 <%
-                    User user = (User) request.getAttribute("user");
+                   
                     if (user != null) {
                 %>  
                 <h1>Update user</h1>

@@ -1,3 +1,19 @@
+<%
+    User user = (User) session.getAttribute("current-user");
+    if (user == null) {
+        session.setAttribute("message", "You are not logged in!! login first");
+        response.sendRedirect("login");
+        return;
+    } else {
+        if (user.getUserType().equals("normal")) {
+            session.setAttribute("message", "Sorry!! You are not admin! Do not access this page.");
+            response.sendRedirect("login");
+            return;
+        }
+    } 
+%>
+
+
 <%@page import="com.ecommerce.entities.Product"%>
 <%@page import="com.ecommerce.Dao.CategoryDao"%>
 <%@page import="com.ecommerce.entities.Category"%>
@@ -86,8 +102,7 @@
                     <label for="pCategory" class="form-label">Description</label>
                     <textarea class="form-control" id="pdescription" name="pdescription"  style="height: 100px"></textarea>                                  
                 </div>
-                <%                   
-                    CategoryDao cdao = new CategoryDao(factoryProvider.getfactory());
+                <%                    CategoryDao cdao = new CategoryDao(factoryProvider.getfactory());
                     List<Category> list = cdao.getcategories();
 
                 %>
