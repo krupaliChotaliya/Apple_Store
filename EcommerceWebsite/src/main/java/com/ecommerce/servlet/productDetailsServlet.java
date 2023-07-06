@@ -35,7 +35,7 @@ public class productDetailsServlet extends HttpServlet {
               out.print(product);
             
             String path = request.getContextPath();
-            response.sendRedirect(path + "/jsp/ProductDetails.jsp");
+            response.sendRedirect(path + "/jsp/ProductDetails");
         }
     }
 

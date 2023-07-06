@@ -20,7 +20,7 @@
         <div class="report-container">
             <div class="report-header">
                 <h2 class="recent-article">User</h2>
-                <a href="${pageContext.request.contextPath}/jsp/addUser.jsp"><button class="view" data-toggle="modal" data-target="#add-user-modal">add</button></a>
+                <a href="${pageContext.request.contextPath}/jsp/addUser"><button class="view" data-toggle="modal" data-target="#add-user-modal">add</button></a>
             </div>
             <div class="report-body">
                 <table class="table table-striped">

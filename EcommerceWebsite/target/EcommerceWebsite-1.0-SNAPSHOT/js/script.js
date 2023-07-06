@@ -79,7 +79,7 @@ function updateCart() {
                     <td>${item.productPrice * item.productQuantity}</td>
                  
                     <td><button class="btn btn-danger"  onclick="deleteItemFromCart(${item.productID})">remove</button></td>
-                    <td><button type="button" class="btn btn btn-light">edit</button></td>
+                   
                 </tr>    
             `
             totalPrice += item.productPrice * item.productQuantity;

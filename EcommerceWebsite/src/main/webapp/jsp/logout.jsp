@@ -6,6 +6,6 @@
 if(user!=null)
 {
     session.removeAttribute("current-user");
-    response.sendRedirect("login.jsp");
+    response.sendRedirect("login");
 }
 %>

@@ -70,7 +70,7 @@
                                         'You are redirecting to home page!',
                                         'success'
                                         ).then((value) => {
-                                    window.location = "home.jsp";
+                                    window.location = "home";
                                 });
 
                             } else
@@ -80,7 +80,7 @@
                                         'You are redirecting to admin page!',
                                         'success'
                                         ).then((value) => {
-                                    window.location = "adminDashboard_user.jsp";
+                                    window.location = "viewUser";
                                 });
                             }
                         },
