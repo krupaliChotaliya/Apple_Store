@@ -47,12 +47,13 @@ public class userDao {
         User user = null;
         try {
 
-            String query = "from User where userEmail = :e and userPassword = :p";
+            String query = "from User where userEmail = :e and userPassword = :p and active =:a";
             session = this.factory.openSession();
             session.beginTransaction();
             Query q = session.createQuery(query);
             q.setParameter("e", email);
             q.setParameter("p", password);
+            q.setParameter("a", "active");
             user = (User) q.uniqueResult();
 
         } catch (Exception e) {
@@ -224,8 +225,9 @@ public class userDao {
         try {
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("select count(*) from User where userEmail=:id");
+            Query q = session.createQuery("select count(*) from User where userEmail=:id and active=:a");
             q.setParameter("id", email);   
+            q.setParameter("a", "active");   
             id = (long) q.uniqueResult();
 
             tx.commit();
@@ -250,8 +252,9 @@ public class userDao {
         try {
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("select count(*) from User where userEmail=:id");
+            Query q = session.createQuery("select count(*) from User where userEmail=:id and active=:a");
             q.setParameter("id", email);
+            q.setParameter("a", "inactive");
             id = (long) q.uniqueResult();
             tx.commit();
         } catch (Exception e) {

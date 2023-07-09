@@ -30,14 +30,14 @@
         <title>Product</title>
         <%@include file="../components/common_css_js.jsp" %>       
     </head>
-    <body>
-        <div class="container">            
+    <body class="bg-dark">
+        <div class="container border my-5 rounded bg-light">            
             <form action="${pageContext.request.contextPath}/products" method="post" enctype="multipart/form-data" id="productform">
                 <%
                     Product p = (Product) request.getAttribute("product");
                     if (p != null) {
                 %>  
-                <h1>Update product</h1>
+                <h1 style="color:#5500cb" class="text-center my-3">Edit product</h1>
                 <input  type="hidden" value="<%= p.getpId()%>" name="id"/>
                 <div class="mb-3">
                     <label for="pname" class="form-label">Name</label>
@@ -57,7 +57,8 @@
                 <div class="mb-3">
                     <label for="pCategory" class="form-label">Category</label>
                     <select name="catId" class="form-control">
-                        <%                            for (Category c : list) {
+                        <%                            
+                                    for (Category c : list) {
                         %>
 
                         <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
@@ -92,7 +93,7 @@
 
                 %>
 
-                <h1>Add product</h1>
+                <h1 style="color:#5500cb" class="text-center my-3 ">Add product</h1>
                 <div class="mb-3">
                     <label for="pname" class="form-label">Name</label>
                     <input type="text" name="pname" id="pname" class="form-control" id="exampleInputEmail1" aria-describedby="">
@@ -144,7 +145,7 @@
                     }
                 %>
 
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success mb-3 btn-block">Submit</button>
             </form>
         </div>
         <!--error message toast-->

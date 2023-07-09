@@ -113,25 +113,27 @@
                         type: 'POST',
                         data: form,
                         success: function (data, textStatus, jqXHR) {
-                            if (data.trim() === "done")
-                            {
+
+                            console.log("enter......" + data);
+                            if (data.trim() == "sucsess") {
                                 Swal.fire(
-                                        'Registered Sucessfully!!',
+                                        'Successfully Registered!!',
                                         'You are redirecting to login page!',
                                         'success'
                                         ).then((value) => {
                                     window.location = "login";
                                 });
+                                console.log("hi");
+                            } else {
 
-
-                            } else
-                            {
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Registration failed!!',
-                                    text: 'Sorry!! Email id is already exist!',
+                                    text: data,
                                 });
+
                             }
+
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
 

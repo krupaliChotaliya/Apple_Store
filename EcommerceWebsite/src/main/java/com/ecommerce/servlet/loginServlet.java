@@ -33,7 +33,7 @@ public class loginServlet extends HttpServlet {
                 
                
                 if (user == null) {
-                    out.println("invaild");
+                    out.println("notexist");
 
                 } else {
                     HttpSession session = request.getSession();

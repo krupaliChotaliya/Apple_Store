@@ -10,7 +10,7 @@
             response.sendRedirect("login");
             return;
         }
-    } 
+    }
 %>
 
 <%@page import="java.util.List"%>
@@ -29,16 +29,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css"/>
+        <link rel="stylesheet" href="../assests/dataTable.css"/>
+        
+
     </head>
     <body>
-          <jsp:include page="../components/common_adminpanel_module.jsp" />
+        <jsp:include page="../components/common_adminpanel_module.jsp" />
         <div class="report-container">
             <div class="report-header">
                 <h2 class="recent-article">User</h2>
                 <a href="${pageContext.request.contextPath}/jsp/addUser"><button class="view" data-toggle="modal" data-target="#add-user-modal">add</button></a>
             </div>
             <div class="report-body">
-                <table class="table table-striped">
+                <table class="table table-striped" id="mytable">
                     <thead>
                         <tr style="color: #5500cb;" >
                             <th scope="col">#</th>
@@ -83,14 +86,16 @@
 
                     </tbody>
                 </table>
+                <script  src="../assests/dataTable.js"></script>       
+                <script  src="../js/Custom_dataTable.js"></script>       
                 <script>
-                    //            navbar toggle
-                    let icon = document.querySelector(".logo-icon");
-                    let nav = document.querySelector(".nav-container");
+                                //            navbar toggle
+                                let icon = document.querySelector(".logo-icon");
+                                let nav = document.querySelector(".nav-container");
 
-                    icon.addEventListener("click", () => {
-                        nav.classList.toggle("navclose");
-                    })                
+                                icon.addEventListener("click", () => {
+                                    nav.classList.toggle("navclose");
+                                })
                 </script>
                 </body>
                 </html>

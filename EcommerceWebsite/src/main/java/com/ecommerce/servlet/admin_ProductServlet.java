@@ -5,7 +5,6 @@ import com.ecommerce.Dao.ProductDao;
 import com.ecommerce.entities.Category;
 import com.ecommerce.entities.Product;
 import com.ecommerce.helper.factoryProvider;
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -74,7 +73,13 @@ public class admin_ProductServlet extends HttpServlet {
         int pDiscount = Integer.parseInt(request.getParameter("pDiscount"));
         String pid = request.getParameter("id");
 
-//        ***********************add product****************************
+        /*if pid is null it means there is no product having this id so add product.
+        if pid is not null it means update product :
+        1.product is active. it means product is already exist.
+        2.product is no active.it means product has been deleted.if admin again tryy to add same product which has been deleted so it will update product from inactive to active.
+        3.update product
+        4.delete product        .      
+        */
         if (pid == null || pid.isEmpty()) {
 
             //if product is exist (pname+active)
@@ -108,39 +113,38 @@ public class admin_ProductServlet extends HttpServlet {
                 int result = pdao.updateProduct(map, queryParams);
 
                 //uploading pictures into folder
-                Collection<Part> parts = request.getParts();
-                int i = 0;
-                for (Part part : parts) {
-                    if ("pPic".equals(part.getName()) || "pOtherPics".equals(part.getName())) {
+                try {
 
-                        // Delete the existing file
-                        File existingFile = new File("E:" + File.separator + "krupali" + File.separator + "Sem5Project" + File.separator + "Apple_Store" + File.separator + "EcommerceWebsite" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "img" + File.separator + "products" + File.separator + pname + "_" + i + ".jpg");
+                    Collection<Part> parts = request.getParts();
+                    parts = request.getParts();
+                    int i = 0;
+                    for (Part part : parts) {
+                        if ("pPic".equals(part.getName()) || "pOtherPics".equals(part.getName())) {
 
-                        if (existingFile.exists()) {
-
-                            if (existingFile.delete()) {
-//                            System.out.println(existingFile.delete() + "delted:::");
-                                part.write(pname + "_" + i + ".jpg");
-                            } else {
-                                HttpSession session = (HttpSession) request.getSession();
-                                session.setAttribute("message", "Your changes have been successfully saved!!");
-                                RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewProduct.jsp");
-                                rd.forward(request, response);
-                                return;
-                            }
-
+                            part.write(pname + "_" + i + ".jpg");
+                            i++;
                         }
+                    }
 
-                        i++;
+                } catch (Exception e) {
+
+                    System.out.println("Cannot write uploaded file to disk!" + e);
+                    if (result > 0) {
+                        HttpSession session = (HttpSession) request.getSession();
+                        session.setAttribute("message", "Cannot write uploaded file to disk!");
+
+                        RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewProduct.jsp");
+                        rd.forward(request, response);
+                        return;
                     }
                 }
                 if (result > 0) {
                     HttpSession session = (HttpSession) request.getSession();
                     session.setAttribute("message", "Your changes have been successfully saved!!");
+
                     RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewProduct.jsp");
                     rd.forward(request, response);
                 }
-
             } else {
 
                 Category category = catdao.getCategoryById(catId);
@@ -164,6 +168,7 @@ public class admin_ProductServlet extends HttpServlet {
                 int i = 0;
                 for (Part part : parts) {
                     if ("pPic".equals(part.getName()) || "pOtherPics".equals(part.getName())) {
+
                         part.write(pname + "_" + i + ".jpg");
                         i++;
                     }
@@ -177,7 +182,7 @@ public class admin_ProductServlet extends HttpServlet {
             }
         } else {
 
-            //update
+            //update+active
             Category category = catdao.getCategoryById(catId);
             String mainPic = pname + "_0.jpg";
             String otherpics = pname + "_1.jpg," + pname + "_2.jpg," + pname + "_3.jpg";
@@ -202,6 +207,7 @@ public class admin_ProductServlet extends HttpServlet {
                 int i = 0;
                 for (Part part : parts) {
                     if ("pPic".equals(part.getName()) || "pOtherPics".equals(part.getName())) {
+
                         part.write(pname + "_" + i + ".jpg");
                         i++;
                     }
@@ -219,13 +225,13 @@ public class admin_ProductServlet extends HttpServlet {
                     return;
                 }
             }
-              if (result > 0) {
-                    HttpSession session = (HttpSession) request.getSession();
-                    session.setAttribute("message", "Your changes have been successfully saved!!");
+            if (result > 0) {
+                HttpSession session = (HttpSession) request.getSession();
+                session.setAttribute("message", "Your changes have been successfully saved!!");
 
-                    RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewProduct.jsp");
-                    rd.forward(request, response);
-                }
+                RequestDispatcher rd = request.getRequestDispatcher("./jsp/viewProduct.jsp");
+                rd.forward(request, response);
+            }
 
         }
 

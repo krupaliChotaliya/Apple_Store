@@ -23,16 +23,15 @@
         <title>User</title>
         <%@include file="../components/common_css_js.jsp" %>       
     </head>
-    <body>
-        <div class="container">            
+    <body  class="bg-dark">
+        <div class="container border my-5 rounded bg-light">            
 
             <form action="${pageContext.request.contextPath}/users" method="post" id="userform">
-
-                <%
-                   
-                    if (user != null) {
+                <%   
+                     User userval = (User) request.getAttribute("user");
+                    if (userval != null) {
                 %>  
-                <h1>Update user</h1>
+                <h1 style="color:#5500cb" class="text-center my-3">Edit user</h1>
                 <input type="hidden" name="id" value="<%= user.getUserId()%>">
                 <div class="mb-3">
                     <label for="pQuantity" class="form-label">Email</label>
@@ -66,7 +65,7 @@
                 } else {
 
                 %>
-                <h1>Add user</h1>
+                <h1 style="color:#5500cb" class="text-center my-3">Add user</h1>
                 <div class="mb-3">
                     <label for="pQuantity" class="form-label">Email</label>
                     <input type="text" name="email" id="email"  class="form-control" id="exampleInputEmail1" aria-describedby="">
@@ -97,7 +96,7 @@
                 <%                }
                 %>
 
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success mb-3 btn-block">Submit</button>
             </form>
         </div>
         <!--error message toast-->
