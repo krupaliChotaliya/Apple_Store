@@ -1,3 +1,18 @@
+<%
+    User user = (User) session.getAttribute("current-user");
+    if (user == null) {
+        session.setAttribute("message", "You are not logged in!! login first");
+        response.sendRedirect("login");
+        return;
+    } else {
+        if (user.getUserType().equals("normal")) {
+            session.setAttribute("message", "Sorry!! You are not admin! Do not access this page.");
+            response.sendRedirect("login");
+            return;
+        }
+    }
+%>
+
 <%@page import="com.ecommerce.entities.Product"%>
 <%@page import="com.ecommerce.Dao.ProductDao"%>
 <%@page import="java.util.List"%>
@@ -16,9 +31,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css"/>
+        <link rel="stylesheet" href="../assests/dataTable.css"/>
     </head>
     <body>
-         <jsp:include page="../components/common_adminpanel_module.jsp" />
+        <jsp:include page="../components/common_adminpanel_module.jsp" />
 
         <div class="report-container">
             <div class="report-header">
@@ -27,7 +43,7 @@
             </div>
             <div class="report-body">
                 <div class="report-body">
-                    <table class="table table-striped">
+                    <table class="table table-striped" id="mytable">
                         <thead>
                             <tr scope="row" style="color: #5500cb;">
                                 <th>#</th>
@@ -69,8 +85,8 @@
                                 <th><%= p.getProductPriceAfterDiscount()%> </th>
                                 <th><%= p.getpQuantity()%> </th>
                                 <th><%= p.getAvailable_quantity()%> </th>
-                                <th><%= p.getpPic() %> </th>
-                                <th><%= p.getpOhterPics() %> </th>
+                                <th><%= p.getpPic()%> </th>
+                                <th><%= p.getpOhterPics()%> </th>
                                 <th><a href="${pageContext.request.contextPath}/products?action=update&id=<%= p.getpId()%>"> <button class="btn btn-primary">update</button></a> </th>
                                 <th><a href="${pageContext.request.contextPath}/products?action=delete&id=<%= p.getpId()%>"> <button class="btn btn-danger">delete</button></a> </th>
                             </tr>
@@ -81,7 +97,8 @@
 
                         </tbody>
                     </table>
-
+                    <script  src="../assests/dataTable.js"></script>       
+                    <script  src="../js/Custom_dataTable.js"></script>  
                     <script>
                         //            navbar toggle
                         let icon = document.querySelector(".logo-icon");

@@ -345,8 +345,13 @@ header .notification{
 /*responsive css*/
 @media screen and (max-width:768px){
 
+    body{
+         overflow-x: hidden;
+    } 
+    
     .nav-container{
         display: none;
+        z-index: 9999;
     }
 
     .navclose{

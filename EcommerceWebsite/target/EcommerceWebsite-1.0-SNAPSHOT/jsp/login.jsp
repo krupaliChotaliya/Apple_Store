@@ -43,25 +43,20 @@
         <script>
 
             $(document).ready(function () {
-
                 $('#login-form').on('submit', function (event) {
-
                     event.preventDefault();
-
                     let form = new FormData(this);
                     $.ajax({
                         url: "../loginServlet",
                         type: 'POST',
                         data: form,
                         success: function (data, textStatus, jqXHR) {
-//                            console.log(data);
-                            if (data.trim() === "invaild")
+                            if (data.trim() === "notexist")
                             {
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'login failed!!',
-                                    text: 'invalid login email or password !!',
-
+                                    text: 'invalid credentials!!'
                                 });
                             } else if (data.trim() === "normal") {
 

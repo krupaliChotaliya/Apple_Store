@@ -90,8 +90,9 @@ public class ProductDao {
 
             session = this.factory.openSession();
             tx = session.beginTransaction();
-            Query q = session.createQuery("from Product as p where p.category.categoryId =:id");
+            Query q = session.createQuery("from Product as p where p.category.categoryId =:id and active =:a");
             q.setParameter("id", cid);
+            q.setParameter("a", 1);
 
             list = q.list();
 

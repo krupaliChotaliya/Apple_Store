@@ -29,6 +29,7 @@ public class signupServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             Session hibernateSession = null;
             Transaction tx = null;
+            HttpSession httpsession = null;
             try {
 
                 String userEmail = request.getParameter("userEmail");
@@ -38,46 +39,27 @@ public class signupServlet extends HttpServlet {
                 String userAddress = request.getParameter("userAddress");
 
                 User user = new User(userName, userEmail, userPassword, userPhone, userAddress, "normal", "active");
-
-                //to user to userdao
                 userDao udao = new userDao(factoryProvider.getfactory());
 
                 //if user is exist (email+active)
                 int rowid = (int) udao.IsUserExist(userEmail);
+                //user is exist(email+inactive)
+                int isexist = (int) udao.IsUserEmailIdExist(userEmail);
                 if (rowid > 0) {
-                    HttpSession httpsession = request.getSession();
-                    httpsession.setAttribute("message", "Sorry!! Email id is already exist!!");
-                    response.sendRedirect("./jsp/signup");
-                    return;
+                    out.println("Sorry!! Email id is already exist!!");
+
+                } else if (isexist > 0) {
+                    out.println("this user is inactive please,create new account with different email Id.");
+
                 } else {
-                    int isexist = (int) udao.IsUserEmailIdExist(userEmail);
-                    if (isexist > 0) {
-
-                        map.put("userName", userName);
-                        map.put("userEmail", userEmail);
-                        map.put("userPassword", userPassword);
-                        map.put("userPhone", userPhone);
-                        map.put("userAddress", userAddress);
-                        map.put("userType", "normal");
-                        map.put("active", "active");
-
-                        queryParams.put("userEmail", userEmail);
-
-                        int result = udao.updateUser(map, queryParams);
-                        if (result > 0) {
-                        }
+                    int userId = udao.addUser(user);
+                    String id = Integer.toString(userId);
+                    if (id == null) {
+                        out.println("registration failed!!");
+                    } else {
+                        out.println("sucsess");
                     }
 
-                }
-
-                int userId = udao.addUser(user);
-
-                String id = Integer.toString(userId);
-                if (id == null) {
-                    out.println("error");
-                } else {
-
-                    out.println("done");
                 }
 
             } catch (Exception e) {
