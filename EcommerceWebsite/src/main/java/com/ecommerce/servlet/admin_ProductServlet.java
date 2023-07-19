@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-
+//../img/products/
 //to store img,audio,video types data above annotation is used.
-@MultipartConfig(location = "E:\\krupali\\Sem5Project\\Apple_Store\\EcommerceWebsite\\src\\main\\webapp\\img\\products")
+@MultipartConfig(location = "../../../webapp/img/products")
 @WebServlet(name = "admin_ProductServlet", urlPatterns = {"/products"})
 public class admin_ProductServlet extends HttpServlet {
 
@@ -45,7 +45,6 @@ public class admin_ProductServlet extends HttpServlet {
         }
 
         switch (path) {
-
             case "update":
                 int id = Integer.parseInt(request.getParameter("id"));
                 updateProduct(id, request, response);
@@ -56,7 +55,6 @@ public class admin_ProductServlet extends HttpServlet {
                 break;
             default:
                 break;
-
         }
 
     }
@@ -66,8 +64,11 @@ public class admin_ProductServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String pname = request.getParameter("pname");
+//         System.out.println(request.getParameter("pname"));
         String pdescription = request.getParameter("pdescription");
+//         System.out.println(request.getParameter("catId"));
         int catId = Integer.parseInt(request.getParameter("catId"));
+       
         int pQuantity = Integer.parseInt(request.getParameter("pQuantity"));
         int pPrice = Integer.parseInt(request.getParameter("pPrice"));
         int pDiscount = Integer.parseInt(request.getParameter("pDiscount"));

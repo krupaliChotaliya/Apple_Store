@@ -110,8 +110,9 @@
 
                 <div class="mb-3">
                     <label for="pCategory" class="form-label">Category</label>
-                    <select name="catId" class="form-control">
-                        <%                            for (Category c : list) {
+                    <select name="catId" class="form-control" id="catid">
+                        <%                           
+                         for (Category c : list) {
                         %>
 
                         <option value="<%=c.getCategoryId()%>"><%=c.getCategoryTitle()%></option>
@@ -167,6 +168,7 @@
             var pQuantity = document.getElementById('pQuantity').value;
             var pPrice = document.getElementById('pPrice').value;
             var pDiscount = document.getElementById('pDiscount').value;
+            console.log("catid"+document.getElementById('catid').value);
 
             if (pname == "")
             {

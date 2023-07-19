@@ -11,13 +11,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="icon" href="../img/media/titlebarlogo.png"  type="image/x-icon"/>
+
         <title><%= p.getpName()%></title>
         <%@include  file="../components/common_css_js.jsp" %>
+     
     </head>
     <body class="bg-dark text-white">
-
-        <div class="container d-flex align-items-center justify-content-center vh-100 ">
+        <div class="container d-flex align-items-center justify-content-center vh-100">
             <div class="row">
                 <div class="col-lg-6">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -45,12 +45,13 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-5 py-5">
-                    <h2><%= p.getpName()%></h2>
-                    <h3 class="card-title" style="color: #e0eafc">&#8377;<%= p.getProductPriceAfterDiscount()%>.00</h3>
-                    <span style="color:gray"><del>&#8377;<%= p.getpPrice()%>.00</del> &nbsp;<%=p.getpDiscount()%>% off  </span>
-                    <h5 class="mt-3"><%=p.getpDescription()%></h5>
+                <div class="col-lg-6 mt-5 py-3">
+                    <h1><%= p.getpName()%></h1>
+                    <h2 class="card-title" style="color: #e0eafc">&#8377;<%= p.getProductPriceAfterDiscount()%>.00</h2>
+                    <h5 style="color:gray"><del>&#8377;<%= p.getpPrice()%>.00</del> &nbsp;<%=p.getpDiscount()%>% off  </h5>
+                    <h4 class="mt-3"><%=p.getpDescription()%></h4>
                 </div>
-            </div>        
+            </div>    
+        </div>
     </body>
 </html>

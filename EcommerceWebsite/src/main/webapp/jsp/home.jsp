@@ -20,11 +20,11 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-3 order-lg-1"    data-aos="fade-up" data-aos-delay="200">
                         <h1>Experience Technology in its Finest Form at the Apple Store</h1>
                         <h2>Apple continues to push the boundaries of innovation, providing users with exceptional products.</h2>
-                        <div class="d-flex justify-content-center justify-content-lg-start">
-                            <a href="#about" class="btn-get-started scrollto">order now</a>
+                        <div class="d-flex justify-content-center justify-content-lg-start" style="margin-bottom:50px">                        
+                            <a href="#about" class="btn-get-started" >order now</a>
                             <a href="${pageContext.request.contextPath}/img/media/home/iphone.mp4" class="glightbox btn-watch-video"><i class="fa fa-play-circle"></i></span>Watch Video</span></a>
                         </div>
                     </div>

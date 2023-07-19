@@ -49,7 +49,6 @@
 
 </style>
 
-<%@include file="../components/common_css_js.jsp" %>
 <section class="footer_wrapper wrapper bg-black">
     <div class="container">
         <div class="row align-items-center mb-5">
