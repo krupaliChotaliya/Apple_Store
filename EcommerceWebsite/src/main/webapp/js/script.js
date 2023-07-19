@@ -68,16 +68,23 @@ function updateCart() {
                     <td>${item.productName}</td>
                     <td>${item.productPrice}</td>
                     <td>                    
-                        <div class="container">
+                        <div>
                              <input type="hidden" name="productname" value="${item.productName}"/>
                              <input type="hidden" name="productprice" value="${item.productPrice}"/>
-                            <button type="button"  class="mb-2" onclick="decrementValue(${item.productID})" value="" style="width:25px" /><i class="fa fa-minus"></i></button>
-                            <input type="text" name="quantity" class="text-center" id="${item.productID}"  maxlength="2" size="1" value="${item.productQuantity}"/>
-                            <button type="button" class="mt-2" onclick="incrementValue(${item.productID})" value="" style="width:25px" /><i class="fa fa-plus"></i></button>
-                        </div>
+                           <div style="min-width: min-content;
+                                width: 5.25rem;           
+                                justify-self: flex-start;               
+                                align-self: flex-end;
+                                display: flex;
+                                justify-content: space-evenly;
+                                padding: 0.7rem 0.4rem;">
+                    <button type="button" onclick="decrementValue(${item.productID})" ><i class="fa fa-minus"></i></button>                  
+                    <input type="text" id="${item.productID}" readonly class="text-center" name="quantity" maxlength="2" size="1" name="quantity"  value="${item.productQuantity}" style="width:30px;">
+                    <button type="button" onclick="incrementValue(${item.productID})"><i class="fa fa-plus"></i></button>
+                </div> 
+            </div>
                     </td>
-                    <td>${item.productPrice * item.productQuantity}</td>
-                 
+                    <td>${item.productPrice * item.productQuantity}</td>          
                     <td><button class="btn btn-danger"  onclick="deleteItemFromCart(${item.productID})">remove</button></td>
                    
                 </tr>    
@@ -180,7 +187,7 @@ function incrementValue(pid)
 // quantity decrese button
 function decrementValue(pid)
 {
-
+    console.log(pid + "-----");
     var value = parseInt(document.getElementById(pid).value, 10);
 
     value = isNaN(value) ? 0 : value;

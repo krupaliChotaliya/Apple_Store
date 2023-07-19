@@ -24,7 +24,7 @@ public class productDetailsServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String pname = request.getParameter("productname");
-            out.print(pname);
+            System.out.println(pname+"------------------");
             
             ProductDao pdao = new ProductDao(factoryProvider.getfactory());
             Product product = pdao.getProductByname(pname);

@@ -22,7 +22,7 @@
 </div>
 
 <!--toast-->
-<div id="toast"></div>
+<div id="toast" class="d-flex justify-content-center align-items-center"></div>
 
 
 

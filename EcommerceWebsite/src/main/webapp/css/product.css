@@ -58,6 +58,9 @@ body {
 
 
 
+
+
+
 /*
 ==========================================
    Custom CSS Design
@@ -168,13 +171,7 @@ p {
    top-banner Design
 ==========================================
 */
-.top-banner{
-    width:100%;
-    background: url('../img/media/banner.jpg') no-repeat center;
-    background-size:cover;
-    padding:16.875rem 0 9.375rem;
 
-}
 
 
 
@@ -184,11 +181,16 @@ p {
 ==========================================
 */
 .counter-section{
-    background-color: var(--primary-color);
+   background-color: var(--primary-color);
+   
     padding:2.5rem 0;
 }
 .counter-section p{
     color:var(--white-color);
+    text-transform: uppercase;
+}
+.counter-section h2{
+    
     text-transform: uppercase;
 }
 
@@ -370,10 +372,7 @@ FAQ section Design
         width:100%;
     }
 
-    /* Banner Design */
-    .top-banner{
-        padding:9.375rem 0 9.375rem;
-    }
+
 
     /* carousel design */
     .testimonial-section .carousel-item .carousel-caption p{
@@ -394,10 +393,6 @@ FAQ section Design
     }
 
 
-    /* top banner */
-    .top-banner{
-        padding:10.875rem 0 9.375rem;
-    }
 
 
     /* story section */

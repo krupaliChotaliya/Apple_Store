@@ -14,10 +14,7 @@
         </button>
         <!--Web Application Context Path = /EcommerceWebsite-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto flex-grow-1 justify-content-between">
-                <li class="nav-item active">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/jsp/store">Store</a>               
-                </li>
+            <ul class="navbar-nav mr-auto flex-grow-1 justify-content-between">               
                 <li class="nav-item active">
                     <a class="nav-link" href="${pageContext.request.contextPath}/jsp/mac">Mac</a>
                 </li>
@@ -67,3 +64,6 @@
         </div>
     </div>
 </nav>
+            
+            
+                  

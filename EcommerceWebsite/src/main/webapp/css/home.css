@@ -64,7 +64,9 @@ h6 {
     padding: 10px 28px 11px 28px;
     border-radius: 50px;
     transition: 0.5s;
-    margin: 10px 0 0 0;
+     margin: 10px 0 0 25px;
+     /*position: fixed;*/
+    /*margin-bottom: 300px;*/   
     color: #fff;
     background: #47b2e4;
 }
@@ -116,9 +118,10 @@ h6 {
     #hero .hero-img img {
         width: 50%;
     }
+   
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px)  {
     #hero h1 {
         font-size: 28px;
         line-height: 36px;
@@ -133,6 +136,13 @@ h6 {
     #hero .hero-img img {
         width: 70%;
     }
+    
+    #hero .btn-get-started {
+        padding: 14px 28px;
+        font-size: 18px;
+        
+    }
+  
 }
 
 @media (max-width: 575px) {
@@ -140,10 +150,7 @@ h6 {
         width: 80%;
     }
 
-    #hero .btn-get-started {
-        font-size: 16px;
-        padding: 10px 24px 11px 24px;
-    }
+   
 }
 
 @keyframes up-down {
