@@ -1,1 +1,1 @@
-# Apple_Store
+Led a dynamic e-commerce project, empowering users to seamlessly browse and purchase a diverse range of Apple devices. Integrated Razor Pay for secure transactions, while efficiently managing product, user, order, and category data for seamless admin control.
